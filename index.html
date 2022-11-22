@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="./segoe-ui-4-cufonfonts-webfont/style.css"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="header-burger-menu">
+        <div class="menu-button"></div>
+      </div>
+      <div class="header-title">
+        <h1 class="header-title-h1">Товары и&nbsp; точка</h1>
+      </div>
+      <div class="header-div-input">
+        <input type="text" class="header-input" placeholder="Я ищу..." />
+      </div>
+      <div class="header-profile">
+        <img
+          class="header-profile-image"
+          src="./images/icons/profile.png"
+          alt=""
+        />
+        <p class="header-p">Профиль</p>
+      </div>
+      <div class="header-basket">
+        <img
+          class="header-basket-image"
+          src="./images/icons/basket.png"
+          alt=""
+        />
+        <p class="header-p">Корзина</p>
+      </div>
+    </header>
+    <main>
+      <div class="main-container">
+        <div class="main-active-product">
+          <h2 class="main-title">Корзина</h2>
+          <!-- <div class="main-checkboxs"></div> -->
+          <div class="main-checkbox-select-all">
+            <input
+              type="checkbox"
+              name=""
+              id=""
+              class="main-selected-products-input"
+            />
+            <p class="p-title">Выбрать все</p>
+            <button id="button_turn" class="turn-list"></button>
+          </div>
+          <!--  -->
+          <div class="all-selected-products">
+            <div class="main-selected-products">
+              <div class="main-selected-products-left">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  class="main-selected-products-input"
+                />
+                <img
+                  class="select-product-image"
+                  src="./images/products/product-foto-1.png"
+                  alt=""
+                />
+                <div class="selected-product-description">
+                  <p class="p-title">Футболка UZcotton мужская</p>
+                  <div class="product-properties">
+                    <p class="p-properties">Цвет: белый</p>
+                    <p class="p-properties">Размер: 56</p>
+                  </div>
+                  <div class="product-about-company">
+                    <p class="p-description">Коледино WB</p>
+                    <p class="p-description">OOO Вайлдберриз</p>
+                  </div>
+                </div>
+              </div>
+              <div class="main-selected-products-rigth">
+                <div class="product-count">
+                  <div class="input-click">
+                    <button
+                      class="input-click-btn-minus"
+                      id="product_count_minus"
+                    >
+                      -
+                    </button>
+                    <input
+                      class="input-click-input"
+                      type="number"
+                      name=""
+                      id="product_input"
+                      value="1"
+                      onkeyup="this.value = this.value.replace(/[^\d]/g,'');"
+                    />
+                    <button
+                      id="product_count_plus"
+                      class="input-click-btn-plus"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div class="product-remainder">
+                    <p>Осталось &nbsp;</p>
+                    <p class="product-remainder-count">2</p>
+                    <p>&nbsp; шт</p>
+                  </div>
+                  <div class="products-icons">
+                    <img
+                      class="products-icons-img"
+                      src="./images/icons/icon-like.png"
+                      alt=""
+                    />
+                    <img
+                      class="products-icons-img"
+                      src="./images/icons/icon-basket.png"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div class="product-price">
+                  <div class="product-price-price">
+                    <p class="price-count">533</p>
+                    <p class="price-valuta">сом</p>
+                  </div>
+                  <div class="product-price-discount">
+                    <p class="product-price-discount-p p-description">1423</p>
+                    <p class="price-valuta p-description">&nbsp; сом</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--  -->
+            <div class="main-selected-products">
+              <div class="main-selected-products-left">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  class="main-selected-products-input"
+                />
+                <img
+                  class="select-product-image"
+                  src="./images/products/product-foto-2.png"
+                  alt=""
+                />
+                <div class="selected-product-description">
+                  <p class="p-title">
+                    Силиконовый чехол картхолдер (отверстия) для карт,
+                    прозрачный кейс бампер на Apple iPhone XR, MobiSafe
+                  </p>
+                  <div class="product-properties">
+                    <p class="p-properties">Цвет: прозрачный</p>
+                  </div>
+                  <div class="product-about-company">
+                    <p class="p-description">Коледино WB</p>
+                    <p class="p-description">OOO Мегапрофстиль</p>
+                  </div>
+                </div>
+              </div>
+              <div class="main-selected-products-rigth">
+                <div class="product-count">
+                  <div class="input-click">
+                    <button
+                      class="input-click-btn-minus"
+                      id="product_count_minus"
+                    >
+                      -
+                    </button>
+                    <input
+                      class="input-click-input"
+                      type="number"
+                      name=""
+                      id="product_input"
+                      value="1"
+                      onkeyup="this.value = this.value.replace(/[^\d]/g,'');"
+                    />
+                    <button
+                      id="product_count_plus"
+                      class="input-click-btn-plus"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div class="product-remainder">
+                    <p>Осталось &nbsp;</p>
+                    <p class="product-remainder-count">2</p>
+                    <p>&nbsp; шт</p>
+                  </div>
+                  <div class="products-icons">
+                    <img
+                      class="products-icons-img"
+                      src="./images/icons/icon-like.png"
+                      alt=""
+                    />
+                    <img
+                      class="products-icons-img"
+                      src="./images/icons/icon-basket.png"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div class="product-price">
+                  <div class="product-price-price">
+                    <p class="price-count">5</p>
+                    <p class="price-valuta">сом</p>
+                  </div>
+                  <div class="product-price-discount">
+                    <p class="product-price-discount-p p-description">1423</p>
+                    <p class="price-valuta p-description">&nbsp; сом</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--  -->
+            <div class="main-selected-products">
+              <div class="main-selected-products-left">
+                <input
+                  type="checkbox"
+                  name=""
+                  id=""
+                  class="main-selected-products-input"
+                />
+                <img
+                  class="select-product-image"
+                  src="./images/products/product-foto-3.png"
+                  alt=""
+                />
+                <div class="selected-product-description">
+                  <p class="p-title">
+                    Карандаши цветные Faber-Castell "Замок", набор 24 цвета,
+                    заточенные, шестигранные,Faber-Castell
+                  </p>
+                  <div class="product-properties">
+                    <p class="p-properties">Цвет: прозрачный</p>
+                  </div>
+                  <div class="product-about-company">
+                    <p class="p-description">Коледино WB</p>
+                    <p class="p-description">OOO Мегапрофстиль</p>
+                  </div>
+                </div>
+              </div>
+              <div class="main-selected-products-rigth">
+                <div class="product-count">
+                  <div class="input-click">
+                    <button
+                      class="input-click-btn-minus"
+                      id="product_count_minus"
+                    >
+                      -
+                    </button>
+                    <input
+                      class="input-click-input"
+                      type="number"
+                      name=""
+                      id="product_input"
+                      value="1"
+                      onkeyup="this.value = this.value.replace(/[^\d]/g,'');"
+                    />
+                    <button
+                      id="product_count_plus"
+                      class="input-click-btn-plus"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div class="product-remainder">
+                    <p>Осталось &nbsp;</p>
+                    <p class="product-remainder-count">2</p>
+                    <p>&nbsp; шт</p>
+                  </div>
+                  <div class="products-icons">
+                    <img
+                      class="products-icons-img"
+                      src="./images/icons/icon-like.png"
+                      alt=""
+                    />
+                    <img
+                      class="products-icons-img"
+                      src="./images/icons/icon-basket.png"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <div class="product-price">
+                  <div class="product-price-price">
+                    <p class="price-count">100</p>
+                    <p class="price-valuta">сом</p>
+                  </div>
+                  <div class="product-price-discount">
+                    <p class="product-price-discount-p p-description">1423</p>
+                    <p class="price-valuta p-description">&nbsp; сом</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--  -->
+          </div>
+        </div>
+      </div>
+      <div class="total">
+        <div class="total-title">
+          <h3>Итого</h3>
+          <div class="total-price">
+            <h3 class="total-title-totalsum"></h3>
+            <h3>&nbsp; сом</h3>
+          </div>
+        </div>
+        <div class="total-product">
+          <p class="total-product-p-count total-product-p">0</p>
+          <span>товара</span>
+          <div class="total-price">
+            <p class="total-product-p">2323</p>
+            <p class="total-product-p">&nbsp;сом</p>
+          </div>
+        </div>
+        <div class="total-discount">
+          <p class="total-product-p">Скидка</p>
+          <div class="total-price">
+            <p class="total-product-p">-3232323</p>
+            <p class="total-product-p">сом</p>
+          </div>
+        </div>
+        <div class="total-delivery">
+          <p class="total-product-p">Доставка</p>
+          <p class="total-product-p">Бесплатно</p>
+        </div>
+        <div class="total-delivery-adress">
+          <div class="total-delivery-adress-title">
+            <h3>Доставка в пункт выдачи</h3>
+            <button class="total-change-btn"></button>
+          </div>
+          <p class="p-properties">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
+          <p class="total-delivery-adress-date">5–8 фев</p>
+        </div>
+        <div class="total-label-delivery">
+          <img
+            src="./images/icons/price shipping.png"
+            alt=""
+            class="total-label-delivery-img"
+          />
+          <div class="total-label-delivery-text">
+            <p class="p-properties">
+              Обратная доставка товаров на склад при отказе —
+            </p>
+            <span class="span-properties">бесплатно</span>
+          </div>
+        </div>
+        <div class="total-payment">
+          <div class="total-payment-adress-title">
+            <h3>Оплата картой</h3>
+            <button class="total-change-btn"></button>
+          </div>
+          <div class="total-payment-cart">
+            <div class="total-payment-cart-title">
+              <img
+                src="./images/icons/Платежные системы.png"
+                class="total-label-payment-img"
+                alt=""
+              />
+              <p class="p-properties">1234 12•• •••• 1234</p>
+            </div>
+            <div class="total-label-payment-text">
+              <div class="total-label-payment-text-agreement">
+                <input type="checkbox" class="total-label-payment-checkbox" />
+                <p class="p-properties">Списать оплату сразу</p>
+              </div>
+
+              <p class="p-properties total-label-payment-p">
+                Спишем оплату с карты при получении
+              </p>
+            </div>
+          </div>
+          <button class="total-btn">Заказать</button>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+  <script src="script.js"></script>
+</html>
