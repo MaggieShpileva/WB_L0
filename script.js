@@ -1,6 +1,6 @@
 let productCount = document.querySelector(".input-click-input");
 let productsCount = document.querySelectorAll(".main-selected-products");
-
+console.log(productsCount);
 const priceOfOrder = document.querySelectorAll(".price-count");
 const totalPrice = document.querySelector(".total-title-totalsum");
 const countsProducts = document.querySelectorAll(".input-click-input");
@@ -12,14 +12,21 @@ const totalPriceWithoutDiscont = document.querySelector(
   ".total-price-without-discont"
 );
 const selectAll = document.getElementById("select-all");
-
+const payButtonFirst = document.getElementById("pay-1");
+const payButtonSecond = document.getElementById("pay-2");
+const modalWindowPay = document.getElementById("box");
+const payWindowClose = document.getElementById("pay-window-close");
+const payWindow = document.querySelector(".payment-modal-window");
+const btnSelect = document.getElementById("btn-select");
+const selectedNumCart = document.getElementById("selected-num-cart");
+const totalSelectedNumCart = document.getElementById("total-selected-num-cart");
 let input = document.querySelectorAll(".main-selected-products-input");
 
 let arrayOfPriceProduts = [];
 let arrayOfCountProducts = [];
 let arrayOfPriceWithoutDiscont = [];
 let discont = 0;
-
+let dataPerson = new Map();
 const BalanceCheck = function (balance) {
   if (balance < 10) {
     document.querySelector(".product-remainder").style.display = "flex";
@@ -106,6 +113,8 @@ const totalValue = function (array, block) {
   array.forEach((el, index) => {
     if (el.textContent) {
       arr[index] = +el.textContent;
+    } else if (el.value) {
+      arr[index] = +el.value;
     }
   });
 
@@ -117,11 +126,16 @@ const totalValue = function (array, block) {
       input.forEach((item, index) => {
         item.checked = true;
         arrayChecked[index] = true;
+        arr[index] = +array[index].textContent;
+        console.log(arr);
+        block.textContent = arr.reduce((sum, current) => sum + current, 0);
       });
     } else {
       input.forEach((item, index) => {
         item.checked = false;
         arrayChecked[index] = false;
+        arr[index] = 0;
+        block.textContent = 0;
       });
     }
   });
@@ -131,12 +145,22 @@ const totalValue = function (array, block) {
 
     el.addEventListener("change", (event) => {
       arrayChecked[index] = el.checked;
-
       if (arrayChecked[index]) {
         arr[index] = +array[index].textContent;
       } else {
         arr[index] = 0;
       }
+
+      let valueAllCheckbox = arrayChecked.every((el) => {
+        return el == true;
+      });
+
+      if (valueAllCheckbox) {
+        selectAll.checked = true;
+      } else {
+        selectAll.checked = false;
+      }
+      console.log(arr);
       let sumProduct = arr.reduce((sum, current) => sum + current, 0);
       block.textContent = sumProduct;
     });
@@ -147,8 +171,8 @@ const totalValue = function (array, block) {
 };
 
 totalValue(priceOfOrder, totalPrice);
-// totalValue(priceWithoutDiscont, totalPriceWithoutDiscont);
-// totalValue(countsProducts, totalCountProduct);
+totalValue(priceWithoutDiscont, totalPriceWithoutDiscont);
+totalValue(countsProducts, totalCountProduct);
 
 document.querySelector(".total-discont").textContent =
   totalPrice.textContent - totalPriceWithoutDiscont.textContent;
@@ -156,8 +180,8 @@ document.querySelector(".total-discont").textContent =
 //изменение итогового счета
 const MakeAnOrder = function () {
   totalValue(priceOfOrder, totalPrice);
-  // totalValue(priceWithoutDiscont, totalPriceWithoutDiscont);
-  // totalValue(countsProducts, totalCountProduct);
+  totalValue(priceWithoutDiscont, totalPriceWithoutDiscont);
+  totalValue(countsProducts, totalCountProduct);
 
   //скидка
   document.querySelector(".total-discont").textContent =
@@ -179,3 +203,28 @@ observer.observe(products, config);
 products.addEventListener("change", (event) => {
   let chk = event.target;
 });
+
+payButtonFirst.addEventListener("click", (event) => {
+  modalWindowPay.style.display = "block";
+});
+payButtonSecond.addEventListener("click", (event) => {
+  modalWindowPay.style.display = "block";
+});
+payWindowClose.addEventListener("click", (event) => {
+  modalWindowPay.style.display = "none";
+});
+//кнопка на модальном окне "Выбрать"
+btnSelect.addEventListener("click", (event) => {
+  modalWindowPay.style.display = "none";
+  selectedNumCart.textContent = dataPerson.get("cart");
+  totalSelectedNumCart.textContent = dataPerson.get("cart");
+});
+
+let radio = payWindow.querySelectorAll(".payment-radio");
+let numCart = payWindow.querySelectorAll(".p-cart");
+console.log(numCart);
+for (let i = 0; i < radio.length; i++) {
+  radio[i].addEventListener("change", (event) => {
+    dataPerson.set("cart", numCart[i].textContent);
+  });
+}

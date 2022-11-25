@@ -387,7 +387,7 @@
           <div class="total-payment">
             <div class="total-payment-adress-title">
               <h3>Оплата картой</h3>
-              <button class="total-change-btn"></button>
+              <button class="total-change-btn" id="pay-1"></button>
             </div>
             <div class="total-payment-cart">
               <div class="total-payment-cart-title">
@@ -396,7 +396,9 @@
                   class="total-label-payment-img"
                   alt=""
                 />
-                <p class="p-properties">1234 12•• •••• 1234</p>
+                <p class="p-properties" id="total-selected-num-cart">
+                  1234 12•• •••• 1234
+                </p>
               </div>
               <div class="total-label-payment-text">
                 <div class="total-label-payment-text-agreement">
@@ -423,6 +425,7 @@
           </div>
         </div>
       </div>
+
       <section class="missing-products">
         <div class="missing-products-title">
           <h5 class="h5-title">Отсутствуют ·</h5>
@@ -430,7 +433,7 @@
           <h5 class="h5-title">товара</h5>
         </div>
         <!--  -->
-        <div class="main-selected-products">
+        <div class="main-selected-products-missing">
           <div class="main-selected-products-left">
             <img
               class="select-product-image"
@@ -463,7 +466,7 @@
           </div>
         </div>
         <!--  -->
-        <div class="main-selected-products">
+        <div class="main-selected-products-missing">
           <div class="main-selected-products-left">
             <img
               class="select-product-image"
@@ -498,7 +501,7 @@
           </div>
         </div>
         <!--  -->
-        <div class="main-selected-products">
+        <div class="main-selected-products-missing">
           <div class="main-selected-products-left">
             <img
               class="select-product-image"
@@ -593,7 +596,7 @@
       <section class="delivery-method">
         <div class="delivery-method-title">
           <h2>Способ оплаты</h2>
-          <button>Изменить</button>
+          <button id="pay-2">Изменить</button>
         </div>
 
         <div class="total-payment-cart-title">
@@ -602,7 +605,7 @@
             class="total-label-payment-img"
             alt=""
           />
-          <p class="p-title">1234 12•• •••• 1234</p>
+          <p class="p-title" id="selected-num-cart">1234 12•• •••• 1234</p>
         </div>
         <p class="p-grey">Спишем оплату с карты при получении</p>
       </section>
@@ -612,7 +615,7 @@
         </div>
         <div class="delivery-method-person-data">
           <input
-            type="text"
+            type="number"
             placeholder="Имя"
             class="delivery-method-person-data-input input-name"
           />
@@ -630,22 +633,57 @@
           <div class="delivery-method-person-data-tel">
             <!-- <p>Телефон</p> -->
             <input
-              type="text"
+              type="tel"
               placeholder="Телефон"
-              pattern="+9-999-999-99-99"
+              pattern="9-999-999-99-99"
               class="delivery-method-person-data-input input-telefon"
             />
           </div>
 
           <input
-            type="text"
+            type="number"
             placeholder="ИНН"
             class="delivery-method-person-data-input input-inn"
           />
         </div>
       </section>
     </main>
+    <section id="box">
+      <div id="box-inner"></div>
+      <div class="payment-modal-window">
+        <div class="payment-modal-window-title">
+          <h3>Способ оплаты</h3>
+          <button id="pay-window-close"></button>
+        </div>
+        <div class="payment-modal-window-cart">
+          <input type="radio" class="payment-radio" id="1" name="radio-pay" />
 
+          <img src="./images/icons/Платежные системы.png" alt="" />
+          <p class="p-cart">1234 56•• •••• 1234</p>
+        </div>
+        <div class="payment-modal-window-cart">
+          <input type="radio" class="payment-radio" id="2" name="radio-pay" />
+
+          <img src="./images/icons/visa.png" alt="" />
+          <p class="p-cart">2344 56•• •••• 1234</p>
+        </div>
+        <div class="payment-modal-window-cart">
+          <input type="radio" class="payment-radio" id="3" name="radio-pay" />
+
+          <img src="./images/icons/maestro.png" alt="" />
+          <p class="p-cart">3412 56•• •••• 1234</p>
+        </div>
+        <div class="payment-modal-window-cart">
+          <input type="radio" class="payment-radio" id="4" name="radio-pay" />
+
+          <img src="./images/icons/mastercart.png" alt="" />
+          <p class="p-cart">4321 56•• •••• 1234</p>
+        </div>
+        <button class="payment-modal-window-button" id="btn-select">
+          Выбрать
+        </button>
+      </div>
+    </section>
     <footer>
       <p>© 2022 ООО «Товары и точка»</p>
     </footer>
