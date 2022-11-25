@@ -1,6 +1,5 @@
 let productCount = document.querySelector(".input-click-input");
 let productsCount = document.querySelectorAll(".main-selected-products");
-console.log(productsCount);
 const priceOfOrder = document.querySelectorAll(".price-count");
 const totalPrice = document.querySelector(".total-title-totalsum");
 const countsProducts = document.querySelectorAll(".input-click-input");
@@ -12,16 +11,21 @@ const totalPriceWithoutDiscont = document.querySelector(
   ".total-price-without-discont"
 );
 const selectAll = document.getElementById("select-all");
-const payButtonFirst = document.getElementById("pay-1");
-const payButtonSecond = document.getElementById("pay-2");
+const payButtonTotal = document.getElementById("pay-1");
+const payButtonBlock = document.getElementById("pay-2");
+const deliveryButtonTotal = document.querySelector(".total-change-btn");
+const deliveryButtonBlock = document.getElementById("delivery-2");
 const modalWindowPay = document.getElementById("box");
+const modalWindowDelivety = document.getElementById("box-delivery");
 const payWindowClose = document.getElementById("pay-window-close");
+const deliveryWindowClose = document.getElementById("delivery-window-close");
+
 const payWindow = document.querySelector(".payment-modal-window");
 const btnSelect = document.getElementById("btn-select");
 const selectedNumCart = document.getElementById("selected-num-cart");
 const totalSelectedNumCart = document.getElementById("total-selected-num-cart");
 let input = document.querySelectorAll(".main-selected-products-input");
-
+const name = document.querySelector(".input-name");
 let arrayOfPriceProduts = [];
 let arrayOfCountProducts = [];
 let arrayOfPriceWithoutDiscont = [];
@@ -204,15 +208,27 @@ products.addEventListener("change", (event) => {
   let chk = event.target;
 });
 
-payButtonFirst.addEventListener("click", (event) => {
+payButtonTotal.addEventListener("click", (event) => {
   modalWindowPay.style.display = "block";
 });
-payButtonSecond.addEventListener("click", (event) => {
+deliveryButtonTotal.addEventListener("click", (event) => {
+  modalWindowDelivety.style.display = "block";
+});
+payButtonBlock.addEventListener("click", (event) => {
   modalWindowPay.style.display = "block";
 });
+deliveryButtonBlock.addEventListener("click", (event) => {
+  modalWindowDelivety.style.display = "block";
+});
+
 payWindowClose.addEventListener("click", (event) => {
   modalWindowPay.style.display = "none";
 });
+
+deliveryWindowClose.addEventListener("click", (event) => {
+  modalWindowDelivety.style.display = "none";
+});
+
 //кнопка на модальном окне "Выбрать"
 btnSelect.addEventListener("click", (event) => {
   modalWindowPay.style.display = "none";
@@ -222,9 +238,44 @@ btnSelect.addEventListener("click", (event) => {
 
 let radio = payWindow.querySelectorAll(".payment-radio");
 let numCart = payWindow.querySelectorAll(".p-cart");
-console.log(numCart);
 for (let i = 0; i < radio.length; i++) {
   radio[i].addEventListener("change", (event) => {
     dataPerson.set("cart", numCart[i].textContent);
   });
 }
+name.addEventListener("input", (event) => {
+  console.log(name.value.slice(-1));
+  if (!isNaN(name.value.slice(-1))) {
+    name.classList.add("input-name-wrong");
+    document.querySelector(".name-wrong").style.display = "block";
+    // name.value = name.value.slice(0, -1);
+  } else if (name.value == "") {
+    document.querySelector(".name-wrong").style.display = "none";
+  } else {
+    name.classList.remove("input-name-wrong");
+    document.querySelector(".name-wrong").style.display = "none";
+  }
+});
+
+const btnDeliveryToPoint = document.getElementById("delivery-to-point");
+const btnDeliveryCourier = document.getElementById("delivery-courier");
+
+btnDeliveryToPoint.onclick = function () {
+  btnDeliveryToPoint.classList.add("btn-active");
+  btnDeliveryCourier.classList.remove("btn-active");
+};
+btnDeliveryCourier.onclick = function () {
+  btnDeliveryCourier.classList.add("btn-active");
+  btnDeliveryToPoint.classList.remove("btn-active");
+};
+
+const deliveryAdresses = document.querySelectorAll(
+  ".delivery-modal-window-cart"
+);
+
+deliveryAdresses.forEach((item) => {
+  const deleteBtn = item.querySelector(".delete-btn");
+  deleteBtn.onclick = function () {
+    deleteBtn.parentElement.remove();
+  };
+});

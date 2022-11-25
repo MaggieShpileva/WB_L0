@@ -45,7 +45,6 @@
       <div class="main-container">
         <div class="main-active-product">
           <h2 class="main-title">Корзина</h2>
-          <!-- <div class="main-checkboxs"></div> -->
           <div class="main-checkbox-select-all">
             <input
               type="checkbox"
@@ -125,16 +124,14 @@
                     <p>&nbsp; шт</p>
                   </div>
                   <div class="products-icons">
-                    <img
-                      class="products-icons-img"
-                      src="./images/icons/icon-like.png"
-                      alt=""
-                    />
-                    <img
-                      class="products-icons-img"
-                      src="./images/icons/icon-basket.png"
-                      alt=""
-                    />
+                    <button
+                      id="product-like-btn"
+                      class="product-like-btn"
+                    ></button>
+                    <button
+                      id="product-delete-btn"
+                      class="product-delete-btn"
+                    ></button>
                   </div>
                 </div>
                 <div class="product-price">
@@ -216,16 +213,14 @@
                     <p>&nbsp; шт</p>
                   </div>
                   <div class="products-icons">
-                    <img
-                      class="products-icons-img"
-                      src="./images/icons/icon-like.png"
-                      alt=""
-                    />
-                    <img
-                      class="products-icons-img"
-                      src="./images/icons/icon-basket.png"
-                      alt=""
-                    />
+                    <button
+                      id="product-like-btn"
+                      class="product-like-btn"
+                    ></button>
+                    <button
+                      id="product-delete-btn"
+                      class="product-delete-btn"
+                    ></button>
                   </div>
                 </div>
                 <div class="product-price">
@@ -261,7 +256,7 @@
                 <div class="selected-product-description">
                   <p class="p-title selected-product-description-p">
                     Карандаши цветные Faber-Castell "Замок", набор 24 цвета,
-                    заточенные, шестигранные, Faber-Castell
+                    заточенные, шестигранные, Faber - Castell
                   </p>
 
                   <div class="product-about-company">
@@ -304,16 +299,14 @@
                     <p>&nbsp; шт</p>
                   </div>
                   <div class="products-icons">
-                    <img
-                      class="products-icons-img"
-                      src="./images/icons/icon-like.png"
-                      alt=""
-                    />
-                    <img
-                      class="products-icons-img"
-                      src="./images/icons/icon-basket.png"
-                      alt=""
-                    />
+                    <button
+                      id="product-like-btn"
+                      class="product-like-btn"
+                    ></button>
+                    <button
+                      id="product-delete-btn"
+                      class="product-delete-btn"
+                    ></button>
                   </div>
                 </div>
                 <div class="product-price">
@@ -448,19 +441,14 @@
               </div>
             </div>
           </div>
-          <div class="main-selected-products-rigth">
+          <div class="main-selected-products-missing-rigth">
             <div class="product-count">
               <div class="products-icons">
-                <img
-                  class="products-icons-img"
-                  src="./images/icons/icon-like.png"
-                  alt=""
-                />
-                <img
-                  class="products-icons-img"
-                  src="./images/icons/icon-basket.png"
-                  alt=""
-                />
+                <button class="product-like-btn" id="product-like-btn"></button>
+                <button
+                  id="product-delete-btn"
+                  class="product-delete-btn"
+                ></button>
               </div>
             </div>
           </div>
@@ -483,19 +471,14 @@
               </div>
             </div>
           </div>
-          <div class="main-selected-products-rigth">
+          <div class="main-selected-products-missing-rigth">
             <div class="product-count">
               <div class="products-icons">
-                <img
-                  class="products-icons-img"
-                  src="./images/icons/icon-like.png"
-                  alt=""
-                />
-                <img
-                  class="products-icons-img"
-                  src="./images/icons/icon-basket.png"
-                  alt=""
-                />
+                <button id="product-like-btn" class="product-like-btn"></button>
+                <button
+                  id="product-delete-btn"
+                  class="product-delete-btn"
+                ></button>
               </div>
             </div>
           </div>
@@ -515,19 +498,14 @@
               </p>
             </div>
           </div>
-          <div class="main-selected-products-rigth">
+          <div class="main-selected-products-missing-rigth">
             <div class="product-count">
               <div class="products-icons">
-                <img
-                  class="products-icons-img"
-                  src="./images/icons/icon-like.png"
-                  alt=""
-                />
-                <img
-                  class="products-icons-img"
-                  src="./images/icons/icon-basket.png"
-                  alt=""
-                />
+                <button id="product-like-btn" class="product-like-btn"></button>
+                <button
+                  id="product-delete-btn"
+                  class="product-delete-btn"
+                ></button>
               </div>
             </div>
           </div>
@@ -536,7 +514,7 @@
       <section class="delivery-method">
         <div class="delivery-method-title">
           <h2>Способ доставки</h2>
-          <button>Изменить</button>
+          <button id="delivery-2">Изменить</button>
         </div>
         <div class="delivery-method-data-order">
           <div class="data-order-title">
@@ -579,11 +557,12 @@
             </div>
           </div>
         </div>
+
         <div class="data-order-agree">
           <img
             src="./images/icons/price shipping.png"
             alt=""
-            class="total-label-delivery-img"
+            class="data-order-agree-img"
           />
           <div class="data-order-agree-text">
             <p class="p-properties">
@@ -607,18 +586,24 @@
           />
           <p class="p-title" id="selected-num-cart">1234 12•• •••• 1234</p>
         </div>
-        <p class="p-grey">Спишем оплату с карты при получении</p>
+        <p class="p-grey total-payment-cart-title-p">
+          Спишем оплату с карты при получении
+        </p>
       </section>
       <section class="delivery-method">
         <div class="delivery-method-title">
           <h2>Получатель</h2>
         </div>
         <div class="delivery-method-person-data">
-          <input
-            type="number"
-            placeholder="Имя"
-            class="delivery-method-person-data-input input-name"
-          />
+          <div class="div-input-name">
+            <input
+              type="text"
+              placeholder="Имя"
+              class="delivery-method-person-data-input input-name"
+            />
+            <p class="name-wrong">Укажите имя</p>
+          </div>
+
           <input
             type="text"
             placeholder="Фамилия"
@@ -680,6 +665,65 @@
           <p class="p-cart">4321 56•• •••• 1234</p>
         </div>
         <button class="payment-modal-window-button" id="btn-select">
+          Выбрать
+        </button>
+      </div>
+    </section>
+    <section id="box-delivery">
+      <div id="box-delivery-inner"></div>
+      <div class="delivery-modal-window">
+        <div class="delivery-modal-window-title">
+          <h3>Способ доставки</h3>
+          <button id="delivery-window-close"></button>
+        </div>
+        <div class="div-delivery-btns">
+          <button class="delivery-window-point-btn" id="delivery-to-point">
+            В пункт выдачи
+          </button>
+          <button class="delivery-window-point-btn" id="delivery-courier">
+            Курьером
+          </button>
+        </div>
+        <h4>Мои адреса</h4>
+        <div class="delivery-modal-adresses">
+          <div class="delivery-modal-window-cart">
+            <input
+              type="radio"
+              class="delivery-radio"
+              id="1"
+              name="radio-delivery"
+            />
+
+            <p class="p-cart">Бишкек, улица Табышалиева, 57</p>
+            <button class="delete-btn"></button>
+          </div>
+          <div class="delivery-modal-window-cart">
+            <input
+              type="radio"
+              class="delivery-radio"
+              id="2"
+              name="radio-delivery"
+            />
+
+            <p class="p-cart">Бишкек, улица Жукеева-Пудовкина, 77/1</p>
+            <button class="delete-btn"></button>
+          </div>
+          <div class="delivery-modal-window-cart">
+            <input
+              type="radio"
+              class="delivery-radio"
+              id="3"
+              name="radio-delivery"
+            />
+
+            <p class="p-cart">
+              Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1
+            </p>
+            <button class="delete-btn"></button>
+          </div>
+        </div>
+
+        <button class="delivery-modal-window-button" id="delivery-btn-select">
           Выбрать
         </button>
       </div>
