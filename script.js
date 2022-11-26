@@ -10,6 +10,8 @@ const priceWithoutDiscont = document.querySelectorAll(
 const totalPriceWithoutDiscont = document.querySelector(
   ".total-price-without-discont"
 );
+const totalDiscont = document.querySelector(".total-discont");
+
 const selectAll = document.getElementById("select-all");
 const payButtonTotal = document.getElementById("pay-1");
 const payButtonBlock = document.getElementById("pay-2");
@@ -24,13 +26,11 @@ const payWindow = document.querySelector(".payment-modal-window");
 const btnSelect = document.getElementById("btn-select");
 const selectedNumCart = document.getElementById("selected-num-cart");
 const totalSelectedNumCart = document.getElementById("total-selected-num-cart");
-let input = document.querySelectorAll(".main-selected-products-input");
-const name = document.querySelector(".input-name");
-let arrayOfPriceProduts = [];
-let arrayOfCountProducts = [];
-let arrayOfPriceWithoutDiscont = [];
-let discont = 0;
-let dataPerson = new Map();
+const input = document.querySelectorAll(".main-selected-products-input");
+const inputName = document.querySelector(".input-name");
+const missingBlocks = document.querySelectorAll(
+  ".main-selected-products-missing"
+);
 const BalanceCheck = function (balance) {
   if (balance < 10) {
     document.querySelector(".product-remainder").style.display = "flex";
@@ -51,35 +51,125 @@ buttonTurn.onclick = function () {
     document.querySelector(".all-selected-products").style.display = "block";
   }
 };
+const missingButtonTurn = document.getElementById("missing-button_turn");
+missingButtonTurn.onclick = function () {
+  buttonTurn.classList.toggle("turn-down-list");
+  if (buttonTurn.classList.contains("turn-down-list")) {
+    document.querySelector(".all-missing-products").style.display = "none";
+  } else {
+    document.querySelector(".all-missing-products").style.display = "block";
+  }
+};
 
-const CountPrice = (item) => {
+missingBlocks.forEach((item) => {
+  const missingBtnDelete = item.querySelector(".product-delete-btn");
+  missingBtnDelete.onclick = () => {
+    item.remove();
+  };
+});
+////////////////
+
+let prodactsData = {};
+let currentSumPrice = 0;
+productsCount.forEach((item, index) => {
   const itemCount = item.querySelector(".input-click-input");
+  const nameProduct = item.querySelector(".selected-product-description-p");
   const itemButtonMinus = item.querySelector(".input-click-btn-minus");
   const itemButtonPlus = item.querySelector(".input-click-btn-plus");
   const priceItemCount = item.querySelector(".price-count");
   const priceWithoutDiscont = item.querySelector(".product-price-discount-p");
-
+  const checkbox = item.querySelector(".main-selected-products-input");
+  const btnDelete = item.querySelector(".product-delete-btn");
+  const infoCompany = item.querySelector(".info-product");
   let countProduct = parseInt(itemCount.value);
   let currentPrice = priceItemCount.textContent;
   let currentPriceWithoutDiscont = priceWithoutDiscont.textContent;
 
+  prodactsData[index] = { name: nameProduct.textContent.trim() }; // имя товара
+  prodactsData[index].initialPrice = +priceItemCount.textContent; //цена продукта
+  prodactsData[index].checkbox = true;
+  prodactsData[index].currentPrice = prodactsData[index].initialPrice;
+  prodactsData[index].count = 1;
+  prodactsData[index].priceWithoutDiscont = +priceWithoutDiscont.textContent;
+
   itemCount.addEventListener("input", (event) => {
-    countProduct = parseInt(itemCount.value);
-    countProduct = ValueRange(countProduct, 10); //проверка на количество товара, которое в наличии
-    ChangeVisiblePrice(countProduct);
-  });
-  itemButtonMinus.addEventListener("click", (event) => {
-    countProduct -= 1;
-    itemCount.value = countProduct;
-    countProduct = ValueRange(countProduct, 10);
-    ChangeVisiblePrice(countProduct);
+    countProduct = +itemCount.value;
+    prodactsData[index].count = +itemCount.value; // количество товара
+    countProduct = ValueRange(countProduct, 100);
+    prodactsData[index].count = countProduct;
+    prodactsData[index].currentPrice = currentPrice * countProduct;
+    priceItemCount.textContent = prodactsData[index].currentPrice;
+    priceWithoutDiscont.textContent =
+      prodactsData[index].priceWithoutDiscont * prodactsData[index].count;
   });
 
-  itemButtonPlus.addEventListener("click", (event) => {
-    countProduct += 1;
+  itemButtonMinus.addEventListener("click", (event) => {
+    countProduct = countProduct - 1;
+    countProduct = ValueRange(countProduct, 100);
+    prodactsData[index].count = countProduct;
+    prodactsData[index].currentPrice = currentPrice * countProduct;
+    priceItemCount.textContent = prodactsData[index].currentPrice;
     itemCount.value = countProduct;
-    countProduct = ValueRange(countProduct, 10); //проверка на количество товара, которое в наличии
-    ChangeVisiblePrice(countProduct);
+    priceWithoutDiscont.textContent =
+      prodactsData[index].priceWithoutDiscont * prodactsData[index].count;
+  });
+  itemButtonPlus.addEventListener("click", (event) => {
+    countProduct = countProduct + 1;
+    countProduct = ValueRange(countProduct, 100);
+
+    prodactsData[index].count = countProduct;
+    prodactsData[index].currentPrice = currentPrice * countProduct;
+    priceItemCount.textContent = prodactsData[index].currentPrice;
+    itemCount.value = countProduct;
+    priceWithoutDiscont.textContent =
+      prodactsData[index].priceWithoutDiscont * prodactsData[index].count;
+  });
+
+  //отслеживание чекбоксов
+  checkbox.addEventListener("change", (event) => {
+    prodactsData[index].checkbox = checkbox.checked;
+    if (checkbox.checked) {
+      currentSumPrice =
+        +totalPrice.textContent + +prodactsData[index].currentPrice;
+      currentSumCount =
+        +totalCountProduct.textContent + +prodactsData[index].count;
+
+      totalPrice.textContent = currentSumPrice;
+      totalCountProduct.textContent = currentSumCount;
+      totalPriceWithoutDiscont.textContent =
+        +totalPriceWithoutDiscont.textContent +
+        +prodactsData[index].priceWithoutDiscont * prodactsData[index].count;
+      totalDiscont.textContent =
+        +totalDiscont.textContent +
+        (prodactsData[index].priceWithoutDiscont * prodactsData[index].count -
+          prodactsData[index].currentPrice);
+    } else {
+      currentSumPrice =
+        totalPrice.textContent - +prodactsData[index].currentPrice;
+      currentSumCount =
+        +totalCountProduct.textContent - +prodactsData[index].count;
+
+      totalPrice.textContent = currentSumPrice;
+      totalCountProduct.textContent = currentSumCount;
+      totalPriceWithoutDiscont.textContent =
+        +totalPriceWithoutDiscont.textContent -
+        +prodactsData[index].priceWithoutDiscont * prodactsData[index].count;
+      totalDiscont.textContent =
+        +totalDiscont.textContent -
+        (prodactsData[index].priceWithoutDiscont * prodactsData[index].count -
+          prodactsData[index].currentPrice);
+      selectAll.checked = false;
+    }
+
+    //провека, все ли чекбоксы true
+    let allCheck = [];
+    for (let key in prodactsData) {
+      allCheck[key] = prodactsData[key].checkbox;
+    }
+    let check = allCheck.every((el) => {
+      return el == true;
+    });
+    check ? (selectAll.checked = true) : (selectAll.checked = false);
   });
 
   const ValueRange = function (count, maxValue) {
@@ -87,109 +177,89 @@ const CountPrice = (item) => {
       itemCount.value = String(maxValue);
       return (count = maxValue);
     } else if (count < 1) {
-      itemCount.value = "1";
+      itemCount.value = 1;
       return (count = 1);
     } else {
       return count;
     }
   };
-
-  const ChangeVisiblePrice = function (countProduct) {
-    priceItemCount.textContent = currentPrice * countProduct;
-    priceWithoutDiscont.textContent = currentPriceWithoutDiscont * countProduct;
-    if (itemCount.value == "") {
-      priceItemCount.textContent = currentPrice;
-      countProduct = 1;
-      console.log(countProduct);
-    }
-  };
-};
-
-productsCount.forEach((item) => {
-  CountPrice(item);
+  btnDelete.onclick = () => item.remove();
+  infoCompany.addEventListener("mouseover", () => {
+    item.querySelector(".info-about-company").style.display = "block";
+  });
+  infoCompany.addEventListener("mouseout", () => {
+    item.querySelector(".info-about-company").style.display = "none";
+  });
 });
 
-//начальное значение итогового чека
+selectAll.addEventListener("change", (event) => {
+  let sumPrice = 0;
+  let sumCount = 0;
+  let sumPriceWithoutDiscont = 0;
+  let sumDiscont = 0;
+  if (selectAll.checked) {
+    for (let item in prodactsData) {
+      prodactsData[item].checkbox = true;
+      input[item].checked = true;
 
-const totalValue = function (array, block) {
-  let arr = [];
-
-  array.forEach((el, index) => {
-    if (el.textContent) {
-      arr[index] = +el.textContent;
-    } else if (el.value) {
-      arr[index] = +el.value;
+      sumPrice += +prodactsData[item].initialPrice * prodactsData[item].count;
+      sumCount += +prodactsData[item].count;
+      sumPriceWithoutDiscont +=
+        prodactsData[item].priceWithoutDiscont * prodactsData[item].count;
+      sumDiscont = sumPriceWithoutDiscont - sumPrice;
     }
-  });
-
-  //проверка инпутов
-  let arrayChecked = [];
-
-  selectAll.addEventListener("change", (event) => {
-    if (selectAll.checked) {
-      input.forEach((item, index) => {
-        item.checked = true;
-        arrayChecked[index] = true;
-        arr[index] = +array[index].textContent;
-        console.log(arr);
-        block.textContent = arr.reduce((sum, current) => sum + current, 0);
-      });
-    } else {
-      input.forEach((item, index) => {
-        item.checked = false;
-        arrayChecked[index] = false;
-        arr[index] = 0;
-        block.textContent = 0;
-      });
+  } else {
+    for (let item in prodactsData) {
+      prodactsData[item].checkbox = false;
+      input[item].checked = false;
+      sumPrice = 0;
+      sumCount = 0;
+      sumPriceWithoutDiscont = 0;
+      sumDiscont = 0;
     }
-  });
+  }
+  totalPrice.textContent = sumPrice;
+  totalCountProduct.textContent = sumCount;
+  totalPriceWithoutDiscont.textContent = sumPriceWithoutDiscont;
+  totalDiscont.textContent = sumDiscont;
+});
 
-  input.forEach((el, index) => {
-    arrayChecked[index] = el.checked;
+//начальные значения чека
 
-    el.addEventListener("change", (event) => {
-      arrayChecked[index] = el.checked;
-      if (arrayChecked[index]) {
-        arr[index] = +array[index].textContent;
-      } else {
-        arr[index] = 0;
-      }
-
-      let valueAllCheckbox = arrayChecked.every((el) => {
-        return el == true;
-      });
-
-      if (valueAllCheckbox) {
-        selectAll.checked = true;
-      } else {
-        selectAll.checked = false;
-      }
-      console.log(arr);
-      let sumProduct = arr.reduce((sum, current) => sum + current, 0);
-      block.textContent = sumProduct;
-    });
-  });
-
-  let sumProduct = arr.reduce((sum, current) => sum + current, 0);
-  block.textContent = sumProduct;
-};
-
-totalValue(priceOfOrder, totalPrice);
-totalValue(priceWithoutDiscont, totalPriceWithoutDiscont);
-totalValue(countsProducts, totalCountProduct);
-
-document.querySelector(".total-discont").textContent =
-  totalPrice.textContent - totalPriceWithoutDiscont.textContent;
+let initialSumPrice = 0;
+let initialSumCount = 0;
+let initialPriceWithoutDiscont = 0;
+let initialDiscont = 0;
+for (let item in prodactsData) {
+  initialSumPrice += prodactsData[item].initialPrice;
+  currentSumPrice = initialSumPrice;
+  initialSumCount += prodactsData[item].count;
+  currentSumCount = initialSumCount;
+  initialPriceWithoutDiscont += prodactsData[item].priceWithoutDiscont;
+}
+totalPrice.textContent = initialSumPrice;
+totalCountProduct.textContent = initialSumCount;
+totalPriceWithoutDiscont.textContent = initialPriceWithoutDiscont;
+totalDiscont.textContent =
+  totalPriceWithoutDiscont.textContent - totalPrice.textContent;
 
 //изменение итогового счета
 const MakeAnOrder = function () {
-  totalValue(priceOfOrder, totalPrice);
-  totalValue(priceWithoutDiscont, totalPriceWithoutDiscont);
-  totalValue(countsProducts, totalCountProduct);
-
-  //скидка
-  document.querySelector(".total-discont").textContent =
-    totalPrice.textContent - totalPriceWithoutDiscont.textContent;
+  let sumPrice = 0;
+  let sumCount = 0;
+  let sumPriceWithoutDiscont = 0;
+  for (let item in prodactsData) {
+    if (prodactsData[item].checkbox) {
+      sumPrice += +prodactsData[item].currentPrice;
+      sumCount += +prodactsData[item].count;
+      sumPriceWithoutDiscont +=
+        prodactsData[item].priceWithoutDiscont * prodactsData[item].count;
+    }
+  }
+  totalPrice.textContent = sumPrice;
+  totalCountProduct.textContent = sumCount;
+  totalPriceWithoutDiscont.textContent = sumPriceWithoutDiscont;
+  totalDiscont.textContent = sumPriceWithoutDiscont - sumPrice;
 };
 
 const products = document.getElementById("elem");
@@ -204,9 +274,6 @@ let config = {
 let observer = new MutationObserver(MakeAnOrder);
 
 observer.observe(products, config);
-products.addEventListener("change", (event) => {
-  let chk = event.target;
-});
 
 payButtonTotal.addEventListener("click", (event) => {
   modalWindowPay.style.display = "block";
@@ -243,19 +310,31 @@ for (let i = 0; i < radio.length; i++) {
     dataPerson.set("cart", numCart[i].textContent);
   });
 }
-name.addEventListener("input", (event) => {
-  console.log(name.value.slice(-1));
-  if (!isNaN(name.value.slice(-1))) {
-    name.classList.add("input-name-wrong");
+inputName.addEventListener("input", (event) => {
+  if (!isNaN(inputName.value.slice(-1))) {
     document.querySelector(".name-wrong").style.display = "block";
-    // name.value = name.value.slice(0, -1);
-  } else if (name.value == "") {
+    // inputName.value = inputName.value.slice(0, -1);
+  } else if (inputName.value == "") {
     document.querySelector(".name-wrong").style.display = "none";
+  } else if (/[0-9]/.test(inputName.value)) {
   } else {
-    name.classList.remove("input-name-wrong");
+    inputName.classList.remove("input-name-wrong");
     document.querySelector(".name-wrong").style.display = "none";
   }
 });
+//доработать для фамилии
+const ValidationInput = (input, block) => {
+  if (!isNaN(input.value.slice(-1))) {
+    block.querySelector(".name-wrong").style.display = "block";
+    // inputName.value = inputName.value.slice(0, -1);
+  } else if (input.value == "") {
+    block.querySelector(".name-wrong").style.display = "none";
+  } else if (/[0-9]/.test(input.value)) {
+  } else {
+    input.classList.remove("input-name-wrong");
+    block.querySelector(".name-wrong").style.display = "none";
+  }
+};
 
 const btnDeliveryToPoint = document.getElementById("delivery-to-point");
 const btnDeliveryCourier = document.getElementById("delivery-courier");
