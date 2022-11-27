@@ -264,6 +264,7 @@ main {
   margin-left: 6px;
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 .info-about-company {
   position: absolute;
@@ -273,8 +274,8 @@ main {
   padding: 11px 16px 7px 16px;
   display: flex;
   flex-direction: column;
-  bottom: -90px;
-  left: 150px;
+  bottom: -85px;
+  left: 10px;
   z-index: 100;
   display: none;
 }
@@ -407,6 +408,7 @@ main {
 .selected-product-description {
   width: 275px;
   margin-left: 16px;
+  position: relative;
 }
 .selected-product-description p {
   margin: 0;
@@ -842,8 +844,13 @@ main {
   color: #a0a0a4;
 }
 
-.div-input-name {
+.div-input-name,
+.div-input-surname {
   height: 70px;
+  width: 338px;
+}
+.div-input-name {
+  margin-right: 24px;
 }
 .input-name,
 .input-surname {
@@ -853,32 +860,68 @@ main {
   font-weight: 400;
   font-size: 16px;
 }
-.input-name:focus {
-  /* height: 50px; */
+
+.input-name[type="text" i],
+.input-surname[type="text" i],
+.input-email[type="text" i],
+.div-input-tel[type="text" i],
+.div-input-inn[type="text" i] {
+  padding: 0;
 }
-.input-name,
-.input-email,
-.input-telefon {
-  margin-right: 24px;
-}
-.input-name-wrong {
-  border-bottom: 1px #f55123 solid;
-  font-weight: 400;
-  font-size: 12px;
-}
-.name-wrong {
+
+.input-wrong {
   font-weight: 400;
   font-size: 12px;
   color: #f55123;
   margin: 4px 0 0 0;
   display: none;
+  position: relative;
+  width: 100%;
 }
-.input-email,
-.input-telefon,
-.input-inn {
+.input-wrong::before {
+  position: absolute;
+  content: "";
+  width: inherit;
+  height: 1px;
+  background-color: #f55123;
+  top: -5px;
+}
+
+.div-input-email,
+.div-input-tel,
+.div-input-inn {
+}
+.sur-inputs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 700px;
+}
+.sur-inputs > div {
   width: 217px;
   height: 64px;
 }
+.sur-inputs > div > input {
+  width: 100%;
+}
+.div-input-tel {
+  position: relative;
+}
+.div-input-tel-p {
+  font-weight: 400;
+  font-size: 13px;
+  color: #a0a0a4;
+  position: absolute;
+  top: -30px;
+  left: 0px;
+}
+.div-input-inn p {
+  font-weight: 400;
+  font-size: 12px;
+  margin: 0;
+}
+
 .total-btn {
   width: 381px;
 }

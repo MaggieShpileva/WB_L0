@@ -28,6 +28,11 @@ const selectedNumCart = document.getElementById("selected-num-cart");
 const totalSelectedNumCart = document.getElementById("total-selected-num-cart");
 const input = document.querySelectorAll(".main-selected-products-input");
 const inputName = document.querySelector(".input-name");
+const inputSurname = document.querySelector(".input-surname");
+const inputEmail = document.querySelector(".input-email");
+const inputTel = document.querySelector(".input-telefon");
+const inputInn = document.querySelector(".input-inn");
+
 const missingBlocks = document.querySelectorAll(
   ".main-selected-products-missing"
 );
@@ -310,31 +315,59 @@ for (let i = 0; i < radio.length; i++) {
     dataPerson.set("cart", numCart[i].textContent);
   });
 }
-inputName.addEventListener("input", (event) => {
-  if (!isNaN(inputName.value.slice(-1))) {
-    document.querySelector(".name-wrong").style.display = "block";
-    // inputName.value = inputName.value.slice(0, -1);
-  } else if (inputName.value == "") {
-    document.querySelector(".name-wrong").style.display = "none";
-  } else if (/[0-9]/.test(inputName.value)) {
-  } else {
-    inputName.classList.remove("input-name-wrong");
-    document.querySelector(".name-wrong").style.display = "none";
-  }
-});
+
 //доработать для фамилии
 const ValidationInput = (input, block) => {
   if (!isNaN(input.value.slice(-1))) {
-    block.querySelector(".name-wrong").style.display = "block";
-    // inputName.value = inputName.value.slice(0, -1);
-  } else if (input.value == "") {
-    block.querySelector(".name-wrong").style.display = "none";
+    block.querySelector(".input-wrong").style.display = "block";
+  } else if (input.value.trim() == "") {
+    block.querySelector(".input-wrong").style.display = "none";
   } else if (/[0-9]/.test(input.value)) {
   } else {
-    input.classList.remove("input-name-wrong");
-    block.querySelector(".name-wrong").style.display = "none";
+    block.classList.remove("input-wrong");
+    block.querySelector(".input-wrong").style.display = "none";
   }
 };
+
+inputName.addEventListener("input", (event) => {
+  ValidationInput(inputName, document.querySelector(".div-input-name"));
+});
+inputSurname.addEventListener("input", (event) => {
+  ValidationInput(inputSurname, document.querySelector(".div-input-surname"));
+});
+let rightEmail;
+inputEmail.addEventListener("input", (event) => {
+  const EMAIL_REGEXP =
+    /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+  rightEmail = EMAIL_REGEXP.test(inputEmail.value); // валидация почты
+});
+
+// inputTel.addEventListener("focus", (event) => {
+//   // Если там ничего нет или есть, но левое
+//   if (!/^\+\d*$/.test(inputTel.value)) {
+//     inputTel.value = "+";
+//   } else if (!/^\+\d*$/.test(inputTel.value) && inputTel.value.length == 12) {
+//     document.querySelector(".input-wrong-tel").style.display = "none";
+//   } else if ([a - zA - Z].test(inputTel.value)) {
+//     document.querySelector(".input-wrong-tel").style.display = "block";
+//   }
+// });
+let rigthTel;
+
+let maskOptions = {
+  mask: "+7 (000) 000-00-00",
+  lazy: false,
+};
+inputTel.addEventListener("focus", (event) => {
+  let mask = new IMask(inputTel, maskOptions);
+});
+
+inputTel.addEventListener("input", (event) => {
+  console.log(inputTel.value.length);
+  if (inputTel.value.length == 19) {
+    rigthTel = inputTel.value;
+  }
+});
 
 const btnDeliveryToPoint = document.getElementById("delivery-to-point");
 const btnDeliveryCourier = document.getElementById("delivery-courier");

@@ -99,6 +99,14 @@
                       />
                     </div>
                   </div>
+                  <div class="info-about-company">
+                    <h3>OOO «МЕГАПРОФСТИЛЬ»</h3>
+                    <p class="p-properties">ОГРН: 5167746237148</p>
+                    <p class="p-properties">
+                      129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1,
+                      помещение 2, офис 34
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="main-selected-products-rigth">
@@ -152,14 +160,6 @@
                   </div>
                 </div>
               </div>
-              <div class="info-about-company">
-                <h3>OOO «МЕГАПРОФСТИЛЬ»</h3>
-                <p class="p-properties">ОГРН: 5167746237148</p>
-                <p class="p-properties">
-                  129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1,
-                  помещение 2, офис 34
-                </p>
-              </div>
             </div>
 
             <!--  -->
@@ -202,6 +202,14 @@
                         alt=""
                       />
                     </div>
+                  </div>
+                  <div class="info-about-company">
+                    <h3>OOO «МЕГАПРОФСТИЛЬ»</h3>
+                    <p class="p-properties">ОГРН: 5167746237148</p>
+                    <p class="p-properties">
+                      129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1,
+                      помещение 2, офис 34
+                    </p>
                   </div>
                 </div>
               </div>
@@ -256,14 +264,6 @@
                   </div>
                 </div>
               </div>
-              <div class="info-about-company">
-                <h3>OOO «МЕГАПРОФСТИЛЬ»</h3>
-                <p class="p-properties">ОГРН: 5167746237148</p>
-                <p class="p-properties">
-                  129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1,
-                  помещение 2, офис 34
-                </p>
-              </div>
             </div>
             <!--  -->
             <div class="main-selected-products">
@@ -304,6 +304,14 @@
                         alt=""
                       />
                     </div>
+                  </div>
+                  <div class="info-about-company">
+                    <h3>OOO «МЕГАПРОФСТИЛЬ»</h3>
+                    <p class="p-properties">ОГРН: 5167746237148</p>
+                    <p class="p-properties">
+                      129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1,
+                      помещение 2, офис 34
+                    </p>
                   </div>
                 </div>
               </div>
@@ -357,14 +365,6 @@
                     <p class="price-valuta p-description">&nbsp; сом</p>
                   </div>
                 </div>
-              </div>
-              <div class="info-about-company">
-                <h3>OOO «МЕГАПРОФСТИЛЬ»</h3>
-                <p class="p-properties">ОГРН: 5167746237148</p>
-                <p class="p-properties">
-                  129337, Москва, улица Красная Сосна, 2, корпус 1, стр. 1,
-                  помещение 2, офис 34
-                </p>
               </div>
             </div>
             <!--  -->
@@ -650,35 +650,46 @@
               placeholder="Имя"
               class="delivery-method-person-data-input input-name"
             />
-            <p class="name-wrong">Укажите имя</p>
+            <p class="input-wrong">Укажите имя</p>
           </div>
-
-          <input
-            type="text"
-            placeholder="Фамилия"
-            class="delivery-method-person-data-input input-surname"
-          />
-
-          <input
-            type="email"
-            placeholder="Почта"
-            class="delivery-method-person-data-input input-email"
-          />
-          <div class="delivery-method-person-data-tel">
-            <!-- <p>Телефон</p> -->
+          <div class="div-input-surname">
             <input
-              type="tel"
-              placeholder="Телефон"
-              pattern="9-999-999-99-99"
-              class="delivery-method-person-data-input input-telefon"
+              type="text"
+              placeholder="Фамилия"
+              class="delivery-method-person-data-input input-surname"
             />
+            <p class="input-wrong">Укажите фамилию</p>
           </div>
-
-          <input
-            type="number"
-            placeholder="ИНН"
-            class="delivery-method-person-data-input input-inn"
-          />
+          <div class="sur-inputs">
+            <div class="div-input-email">
+              <input
+                type="email"
+                placeholder="Почта"
+                class="delivery-method-person-data-input input-email"
+              />
+              <p class="input-wrong">Укажите почту</p>
+            </div>
+            <div class="div-input-tel">
+              <p class="div-input-tel-p">Телефон</p>
+              <input
+                type="tel"
+                placeholder="Телефон"
+                pattern="9-999-999-99-99"
+                class="delivery-method-person-data-input input-telefon"
+              />
+              <p class="input-wrong input-wrong-tel">Укажите номер телефона</p>
+            </div>
+            <div class="div-input-inn">
+              <input
+                type="tel"
+                placeholder="ИНН"
+                class="delivery-method-person-data-input input-inn"
+                required
+                maxlength="10"
+              />
+              <p>Для таможенного оформления</p>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -781,5 +792,8 @@
       <p>© 2022 ООО «Товары и точка»</p>
     </footer>
   </body>
+  <script src="https://unpkg.com/imask"></script>
   <script src="script.js"></script>
+
+  ;
 </html>
