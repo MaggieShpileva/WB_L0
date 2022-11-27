@@ -375,6 +375,7 @@ btnSelect.addEventListener("click", (event) => {
     selectedNumCart.textContent = dataPerson.get("cart");
     totalSelectedNumCart.textContent = dataPerson.get("cart");
     document.querySelector(".total-cart-img").src = dataPerson.get("imgCart");
+    document.querySelector(".pay-img").src = dataPerson.get("imgCart");
   }
 });
 //выбор карт оплаты

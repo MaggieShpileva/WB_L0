@@ -14,31 +14,36 @@
   </head>
   <body>
     <header>
-      <div class="header-burger-menu">
-        <div class="menu-button"></div>
+      <div class="header-part-left">
+        <div class="header-burger-menu">
+          <div class="menu-button"></div>
+        </div>
+        <div class="header-title">
+          <h1 class="header-title-h1">Товары и&nbsp; точка</h1>
+        </div>
       </div>
-      <div class="header-title">
-        <h1 class="header-title-h1">Товары и&nbsp; точка</h1>
-      </div>
+
       <div class="header-div-input">
         <input type="text" class="header-input" placeholder="Я ищу..." />
         <img src="./images/icons/Search.png" alt="" />
       </div>
-      <div class="header-profile">
-        <img
-          class="header-profile-image"
-          src="./images/icons/profile.png"
-          alt=""
-        />
-        <p class="header-p">Профиль</p>
-      </div>
-      <div class="header-basket">
-        <img
-          class="header-basket-image"
-          src="./images/icons/basket.png"
-          alt=""
-        />
-        <p class="header-p">Корзина</p>
+      <div class="header-part-rigth">
+        <div class="header-profile">
+          <img
+            class="header-profile-image"
+            src="./images/icons/profile.png"
+            alt=""
+          />
+          <p class="header-p">Профиль</p>
+        </div>
+        <div class="header-basket">
+          <img
+            class="header-basket-image"
+            src="./images/icons/basket.png"
+            alt=""
+          />
+          <p class="header-p">Корзина</p>
+        </div>
       </div>
     </header>
     <main>
@@ -371,101 +376,102 @@
           </div>
         </div>
       </div>
-      <div>
-        <div class="total">
-          <div class="total-title">
-            <h3>Итого</h3>
-            <div class="total-price">
-              <h3 class="total-title-totalsum"></h3>
-              <h3>&nbsp; сом</h3>
-            </div>
-          </div>
-          <div class="total-product">
-            <div class="total-price">
-              <p class="total-product-p-count total-product-p">0</p>
-              <p class="total-product-p">&nbsp; товара</p>
-            </div>
 
-            <div class="total-price">
-              <p class="total-product-p total-price-without-discont">2323</p>
-              <p class="total-product-p">&nbsp;сом</p>
-            </div>
+      <div class="total">
+        <div class="total-title">
+          <h3>Итого</h3>
+          <div class="total-price">
+            <h3 class="total-title-totalsum"></h3>
+            <h3>&nbsp; сом</h3>
           </div>
-          <div class="total-discount">
-            <p class="total-product-p">Скидка</p>
-            <div class="total-price">
-              <p class="total-product-p total-discont">-3232323</p>
-              <p class="total-product-p">&nbsp;сом</p>
-            </div>
+        </div>
+        <div class="total-product">
+          <div class="total-price">
+            <p class="total-product-p-count total-product-p">0</p>
+            <p class="total-product-p">&nbsp; товара</p>
           </div>
-          <div class="total-delivery">
-            <p class="total-product-p">Доставка</p>
-            <p class="total-product-p">Бесплатно</p>
+
+          <div class="total-price">
+            <p class="total-product-p total-price-without-discont">2323</p>
+            <p class="total-product-p">&nbsp;сом</p>
           </div>
-          <div class="total-delivery-adress">
-            <div class="total-delivery-adress-title">
-              <h3>Доставка в пункт выдачи</h3>
-              <button class="total-change-btn"></button>
-            </div>
-            <p class="p-properties delivery-block-adress">
-              Бишкек, улица Ахматбека Суюмбаева, 12/1
+        </div>
+        <div class="total-discount">
+          <p class="total-product-p">Скидка</p>
+          <div class="total-price">
+            <p class="total-product-p total-discont">-3232323</p>
+            <p class="total-product-p">&nbsp;сом</p>
+          </div>
+        </div>
+        <div class="total-delivery">
+          <p class="total-product-p">Доставка</p>
+          <p class="total-product-p">Бесплатно</p>
+        </div>
+        <div class="total-delivery-adress">
+          <div class="total-delivery-adress-title">
+            <h3>Доставка в пункт выдачи</h3>
+            <button class="total-change-btn"></button>
+          </div>
+          <p class="p-properties delivery-block-adress">
+            Бишкек, улица Ахматбека Суюмбаева, 12/1
+          </p>
+          <p class="total-delivery-adress-date">5–8 фев</p>
+        </div>
+        <div class="total-label-delivery">
+          <img
+            src="./images/icons/price shipping.png"
+            alt=""
+            class="total-label-delivery-img"
+          />
+          <div class="total-label-delivery-text">
+            <p class="p-properties">
+              Обратная доставка товаров на склад при отказе —<span
+                class="span-properties"
+                >бесплатно</span
+              >
             </p>
-            <p class="total-delivery-adress-date">5–8 фев</p>
           </div>
-          <div class="total-label-delivery">
-            <img
-              src="./images/icons/price shipping.png"
-              alt=""
-              class="total-label-delivery-img"
-            />
-            <div class="total-label-delivery-text">
-              <p class="p-properties">
-                Обратная доставка товаров на склад при отказе —
-              </p>
-              <span class="span-properties">бесплатно</span>
-            </div>
+        </div>
+        <div class="total-payment">
+          <div class="total-payment-adress-title">
+            <h3>Оплата картой</h3>
+            <button class="total-change-btn" id="pay-1"></button>
           </div>
-          <div class="total-payment">
-            <div class="total-payment-adress-title">
-              <h3>Оплата картой</h3>
-              <button class="total-change-btn" id="pay-1"></button>
-            </div>
-            <div class="total-payment-cart">
-              <div class="total-payment-cart-title">
-                <img
-                  src="./images/icons/Платежные системы.png"
-                  class="total-label-payment-img total-cart-img"
-                  alt=""
-                />
-                <p class="p-properties" id="total-selected-num-cart">
-                  1234 12•• •••• 1234
-                </p>
-              </div>
-              <div class="total-label-payment-text">
-                <div class="total-label-payment-text-agreement">
-                  <input
-                    type="checkbox"
-                    class="main-selected-products-input write-off-payment"
-                  />
-                  <p class="p-properties">Списать оплату сразу</p>
-                </div>
-
-                <p class="p-properties total-label-payment-p">
-                  Спишем оплату с карты при получении
-                </p>
-              </div>
-            </div>
-            <button class="total-btn">Заказать</button>
-            <div class="total-agreement">
+          <div class="total-payment-cart">
+            <div class="total-payment-cart-title">
               <img
-                src="./images/icons/check mark.png"
+                src="./images/icons/Платежные системы.png"
+                class="total-label-payment-img total-cart-img"
                 alt=""
-                class="total-agreement-img"
               />
-              <p class="p-properties total-agreement-p">
-                Соглашаюсь с правилами пользования торговой площадкой и возврата
+              <p class="p-properties" id="total-selected-num-cart">
+                1234 12•• •••• 1234
               </p>
             </div>
+            <div class="total-label-payment-text">
+              <div class="total-label-payment-text-agreement">
+                <input
+                  type="checkbox"
+                  class="main-selected-products-input write-off-payment"
+                />
+                <p class="p-properties">Списать оплату сразу</p>
+              </div>
+
+              <p class="p-properties total-label-payment-p">
+                Спишем оплату с карты при получении
+              </p>
+            </div>
+          </div>
+          <button class="total-btn">Заказать</button>
+          <div class="total-agreement">
+            <img
+              src="./images/icons/check mark.png"
+              alt=""
+              class="total-agreement-img"
+            />
+            <p class="p-properties total-agreement-p">
+              Соглашаюсь с правилами пользования торговой площадкой и возврата
+            </p>
           </div>
         </div>
       </div>
@@ -494,16 +500,20 @@
                 </div>
               </div>
             </div>
-            <div class="main-selected-products-missing-rigth">
-              <div class="product-count">
+            <div class="main-selected-products-rigth">
+              <div class="product-missing-price">
                 <div class="products-icons">
                   <button
-                    class="product-like-btn"
                     id="product-like-btn"
+                    class="product-like-btn"
                   ></button>
-                  <button class="product-delete-btn"></button>
+                  <button
+                    id="product-delete-btn"
+                    class="product-delete-btn"
+                  ></button>
                 </div>
               </div>
+              <div class="product-missing-price"></div>
             </div>
           </div>
           <!--  -->
@@ -524,16 +534,20 @@
                 </div>
               </div>
             </div>
-            <div class="main-selected-products-missing-rigth">
-              <div class="product-count">
+            <div class="main-selected-products-rigth">
+              <div class="product-missing-price">
                 <div class="products-icons">
                   <button
                     id="product-like-btn"
                     class="product-like-btn"
                   ></button>
-                  <button class="product-delete-btn"></button>
+                  <button
+                    id="product-delete-btn"
+                    class="product-delete-btn"
+                  ></button>
                 </div>
               </div>
+              <div class="product-missing-price"></div>
             </div>
           </div>
           <!--  -->
@@ -551,16 +565,20 @@
                 </p>
               </div>
             </div>
-            <div class="main-selected-products-missing-rigth">
-              <div class="product-count">
+            <div class="main-selected-products-rigth">
+              <div class="product-missing-price">
                 <div class="products-icons">
                   <button
                     id="product-like-btn"
                     class="product-like-btn"
                   ></button>
-                  <button class="product-delete-btn"></button>
+                  <button
+                    id="product-delete-btn"
+                    class="product-delete-btn"
+                  ></button>
                 </div>
               </div>
+              <div class="product-missing-price"></div>
             </div>
           </div>
         </div>
@@ -635,7 +653,7 @@
         <div class="total-payment-cart-title">
           <img
             src="./images/icons/Платежные системы.png"
-            class="total-label-payment-img"
+            class="total-label-payment-img pay-img"
             alt=""
           />
           <p class="p-title" id="selected-num-cart">1234 12•• •••• 1234</p>
@@ -808,6 +826,4 @@
   </body>
   <script src="https://unpkg.com/imask"></script>
   <script src="script.js"></script>
-
-  ;
 </html>
