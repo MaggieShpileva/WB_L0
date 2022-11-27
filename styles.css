@@ -399,6 +399,7 @@ main {
   color: #ff3b30;
   font-weight: 400;
   font-size: 13px;
+  display: none;
 }
 
 .all-selected-products {
@@ -655,15 +656,19 @@ main {
   width: 22px;
   height: 22px;
   border-radius: 4px;
-  background-color: #cb11ab;
-  border-color: #cb11ab;
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .main-selected-products-input:checked,
 .main-selected-all-products-input:checked {
+  width: 20px;
+  height: 20px;
   background-color: #cb11ab;
   background-image: url("./images/icons/checkbox.png");
   background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid cb11ab;
   box-sizing: content-box;
 }
 
@@ -766,6 +771,7 @@ main {
   z-index: 999;
   display: none;
 }
+
 #box-inner,
 #box-delivery-inner {
   position: absolute;
@@ -868,7 +874,8 @@ main {
 .div-input-inn[type="text" i] {
   padding: 0;
 }
-
+.input-email {
+}
 .input-wrong {
   font-weight: 400;
   font-size: 12px;
@@ -907,6 +914,9 @@ main {
 }
 .div-input-tel {
   position: relative;
+}
+.input-inn::-webkit-inner-spin-button {
+  display: none;
 }
 .div-input-tel-p {
   font-weight: 400;
@@ -1072,10 +1082,11 @@ footer {
   outline: none;
   color: #a0a0a4;
 }
+.delivery-p-cart {
+}
 .p-cart {
   font-weight: 400;
   font-size: 16px;
-  line-height: 24px;
 }
 .span-properties {
   font-weight: 400;

@@ -407,7 +407,9 @@
               <h3>Доставка в пункт выдачи</h3>
               <button class="total-change-btn"></button>
             </div>
-            <p class="p-properties">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
+            <p class="p-properties delivery-block-adress">
+              Бишкек, улица Ахматбека Суюмбаева, 12/1
+            </p>
             <p class="total-delivery-adress-date">5–8 фев</p>
           </div>
           <div class="total-label-delivery">
@@ -432,7 +434,7 @@
               <div class="total-payment-cart-title">
                 <img
                   src="./images/icons/Платежные системы.png"
-                  class="total-label-payment-img"
+                  class="total-label-payment-img total-cart-img"
                   alt=""
                 />
                 <p class="p-properties" id="total-selected-num-cart">
@@ -441,7 +443,10 @@
               </div>
               <div class="total-label-payment-text">
                 <div class="total-label-payment-text-agreement">
-                  <input type="checkbox" class="total-label-payment-checkbox" />
+                  <input
+                    type="checkbox"
+                    class="main-selected-products-input write-off-payment"
+                  />
                   <p class="p-properties">Списать оплату сразу</p>
                 </div>
 
@@ -658,7 +663,7 @@
               placeholder="Фамилия"
               class="delivery-method-person-data-input input-surname"
             />
-            <p class="input-wrong">Укажите фамилию</p>
+            <p class="input-surname-wrong input-wrong">Укажите фамилию</p>
           </div>
           <div class="sur-inputs">
             <div class="div-input-email">
@@ -667,7 +672,7 @@
                 placeholder="Почта"
                 class="delivery-method-person-data-input input-email"
               />
-              <p class="input-wrong">Укажите почту</p>
+              <p class="input-wrong input-email-wrong">Укажите почту</p>
             </div>
             <div class="div-input-tel">
               <p class="div-input-tel-p">Телефон</p>
@@ -681,11 +686,9 @@
             </div>
             <div class="div-input-inn">
               <input
-                type="tel"
+                type="number"
                 placeholder="ИНН"
                 class="delivery-method-person-data-input input-inn"
-                required
-                maxlength="10"
               />
               <p>Для таможенного оформления</p>
             </div>
@@ -703,25 +706,29 @@
         <div class="payment-modal-window-cart">
           <input type="radio" class="payment-radio" id="1" name="radio-pay" />
 
-          <img src="./images/icons/Платежные системы.png" alt="" />
+          <img
+            src="./images/icons/Платежные системы.png"
+            alt=""
+            class="image-cart"
+          />
           <p class="p-cart">1234 56•• •••• 1234</p>
         </div>
         <div class="payment-modal-window-cart">
           <input type="radio" class="payment-radio" id="2" name="radio-pay" />
 
-          <img src="./images/icons/visa.png" alt="" />
+          <img src="./images/icons/visa.png" alt="" class="image-cart" />
           <p class="p-cart">2344 56•• •••• 1234</p>
         </div>
         <div class="payment-modal-window-cart">
           <input type="radio" class="payment-radio" id="3" name="radio-pay" />
 
-          <img src="./images/icons/maestro.png" alt="" />
+          <img src="./images/icons/maestro.png" alt="" class="image-cart" />
           <p class="p-cart">3412 56•• •••• 1234</p>
         </div>
         <div class="payment-modal-window-cart">
           <input type="radio" class="payment-radio" id="4" name="radio-pay" />
 
-          <img src="./images/icons/mastercart.png" alt="" />
+          <img src="./images/icons/mastercart.png" alt="" class="image-cart" />
           <p class="p-cart">4321 56•• •••• 1234</p>
         </div>
         <button class="payment-modal-window-button" id="btn-select">
@@ -740,7 +747,10 @@
           <button class="delivery-window-point-btn" id="delivery-to-point">
             В пункт выдачи
           </button>
-          <button class="delivery-window-point-btn" id="delivery-courier">
+          <button
+            class="delivery-window-point-btn btn-active"
+            id="delivery-courier"
+          >
             Курьером
           </button>
         </div>
@@ -754,7 +764,9 @@
               name="radio-delivery"
             />
 
-            <p class="p-cart">Бишкек, улица Табышалиева, 57</p>
+            <p class="delivery-p-cart delivery-adress">
+              Бишкек, улица Табышалиева, 57
+            </p>
             <button class="delete-btn"></button>
           </div>
           <div class="delivery-modal-window-cart">
@@ -765,7 +777,9 @@
               name="radio-delivery"
             />
 
-            <p class="p-cart">Бишкек, улица Жукеева-Пудовкина, 77/1</p>
+            <p class="delivery-p-cart delivery-adress">
+              Бишкек, улица Жукеева-Пудовкина, 77/1
+            </p>
             <button class="delete-btn"></button>
           </div>
           <div class="delivery-modal-window-cart">
@@ -776,7 +790,7 @@
               name="radio-delivery"
             />
 
-            <p class="p-cart">
+            <p class="p-cart delivery-adress">
               Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1
             </p>
             <button class="delete-btn"></button>
