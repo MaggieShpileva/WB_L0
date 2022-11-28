@@ -228,7 +228,7 @@ main {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 900px;
+  width: 895px;
   position: relative;
   margin-left: -4px;
   margin-top: -10px;
@@ -716,7 +716,7 @@ main {
   height: 30px;
   margin-top: 15px;
   margin-bottom: 25px;
-  width: 100%;
+  width: 891px;
 }
 
 .missing-products-title h5 {
@@ -1282,6 +1282,13 @@ footer {
     width: 590px;
   }
 
+  .missing-products-title {
+    width: 640px;
+  }
+
+  .main-checkbox-select-all {
+    width: 644px;
+  }
   .div-input-surname,
   .div-input-name {
     width: 283px;
@@ -1618,6 +1625,10 @@ footer {
     left: 0;
     padding: 16px;
     top: -25px;
+  }
+
+  .missing-products-title {
+    width: 288px;
   }
 
   .payment-modal-window-button {
