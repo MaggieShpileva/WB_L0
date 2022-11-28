@@ -341,7 +341,6 @@ totalDiscont.textContent =
 const MakeAnOrder = function () {
   let sumPrice = 0;
   let sumCount = 0;
-
   let sumPriceWithoutDiscont = 0;
   for (let item in prodactsData) {
     if (prodactsData[item].checkbox) {
@@ -363,6 +362,7 @@ const MakeAnOrder = function () {
 };
 
 const products = document.getElementById("elem");
+
 let config = {
   childList: true,
   attributes: true,
@@ -373,6 +373,7 @@ let config = {
 
 //отслеживание изненений товаров
 let observer = new MutationObserver(MakeAnOrder);
+observer.observe(products, config);
 
 //кнопки для отображения модальных окон
 payButtonTotal.addEventListener("click", (event) => {
