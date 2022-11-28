@@ -33,12 +33,12 @@ const inputSurname = document.querySelector(".input-surname");
 const inputEmail = document.querySelector(".input-email");
 const inputTel = document.querySelector(".input-telefon");
 const inputInn = document.querySelector(".input-inn");
-
+const countInBasket = document.querySelector(".count-product-in-basket");
 const missingBlocks = document.querySelectorAll(
   ".main-selected-products-missing"
 );
 
-let dataPerson = new Map();
+let dataPerson = new Map(); // данные о пользователе
 
 const arrayDelivetyPointAdress = [
   {
@@ -54,6 +54,7 @@ const arrayDelivetyPointAdress = [
     raiting: "4.99",
   },
 ];
+
 const arrayDelivetyCourierAdress = [
   { adress: "Бишкек, улица Табышалиева, 57" },
   {
@@ -62,15 +63,8 @@ const arrayDelivetyCourierAdress = [
   { adress: "Бишкек, микрорайон Джал, улица Ахунбаева Исы, 67/1" },
 ];
 
+//кол-во всего товара на складе
 const remainderProduct = [{ count: 4 }, { count: 3 }, { count: 10 }];
-const BalanceCheck = function (balance, remainder, countRemainder) {
-  if (+balance.value > remainder - 2) {
-    document.querySelector(".product-remainder").style.display = "flex";
-    countRemainder.textContent = remainder - +balance.value;
-  } else {
-    document.querySelector(".product-remainder").style.display = "none";
-  }
-};
 
 //кнопка для скрытия/отображения товаров
 const buttonTurn = document.getElementById("button_turn");
@@ -94,70 +88,86 @@ missingButtonTurn.onclick = function () {
   }
 };
 
+//удаление товаров, которых нет в наличии
 missingBlocks.forEach((item) => {
   const missingBtnDelete = item.querySelector(".product-delete-btn");
   missingBtnDelete.onclick = () => {
     item.remove();
   };
 });
-////////////////
 
+// данные по каждому товару
 let prodactsData = {};
+
 let currentSumPrice = 0;
+//отслеживание каждой позиции товара
 productsCount.forEach((item, index) => {
   const itemCount = item.querySelector(".input-click-input");
-
   const nameProduct = item.querySelector(".selected-product-description-p");
   const itemButtonMinus = item.querySelector(".input-click-btn-minus");
   const itemButtonPlus = item.querySelector(".input-click-btn-plus");
-
   const priceItemCount = item.querySelector(".price-count");
   const priceWithoutDiscont = item.querySelector(".product-price-discount-p");
   const checkbox = item.querySelector(".main-selected-products-input");
   const btnDelete = item.querySelector(".product-delete-btn");
   const infoCompany = item.querySelector(".info-product");
   const countRemainder = item.querySelector(".product-remainder-count");
+
   let countProduct = parseInt(itemCount.value);
   let currentPrice = priceItemCount.textContent;
   let currentPriceWithoutDiscont = priceWithoutDiscont.textContent;
 
   prodactsData[index] = { name: nameProduct.textContent.trim() }; // имя товара
   prodactsData[index].initialPrice = +priceItemCount.textContent; //цена продукта
-  prodactsData[index].checkbox = true;
+  prodactsData[index].checkbox = true; //чек-бокс
   prodactsData[index].currentPrice = prodactsData[index].initialPrice;
   prodactsData[index].count = 1;
   prodactsData[index].priceWithoutDiscont = +priceWithoutDiscont.textContent;
 
+  // ввод кол-ва товара в ручную
   itemCount.addEventListener("input", (event) => {
     countProduct = +itemCount.value;
-    prodactsData[index].count = +itemCount.value; // количество товара
+    //запись значений по товару
+    prodactsData[index].count = +itemCount.value;
     countProduct = ValueRange(countProduct, 1000);
     prodactsData[index].count = countProduct;
     prodactsData[index].currentPrice = currentPrice * countProduct;
     priceItemCount.textContent = prodactsData[index].currentPrice;
     priceWithoutDiscont.textContent =
       prodactsData[index].priceWithoutDiscont * prodactsData[index].count;
-    // if (+itemCount.value > remainderProduct[index].count) {
-    // item.querySelector(".product-remainder").style.display = "flex";
-    // itemCount.value = remainderProduct[index].count;
-    // prodactsData[index].count = remainderProduct[index].count;
 
-    // countRemainder.textContent =
-    // remainderProduct[index].count - +itemCount.value;
-    // } else if (+itemCount.value < remainderProduct[index].count) {
-    // item.querySelector(".product-remainder").style.display = "none";
-    // }
+    //проверка по кол-ву товара в наличии
+    if (+itemCount.value > remainderProduct[index].count) {
+      item.querySelector(".product-remainder").style.display = "flex";
+      itemCount.value = remainderProduct[index].count;
+      prodactsData[index].count = remainderProduct[index].count;
+      prodactsData[index].currentPrice =
+        remainderProduct[index].count * prodactsData[index].initialPrice;
+      itemButtonPlus.disabled = true;
+      countProduct = remainderProduct[index].count;
+      priceItemCount.textContent =
+        remainderProduct[index].count * prodactsData[index].initialPrice;
+      priceWithoutDiscont.textContent =
+        remainderProduct[index].count * prodactsData[index].priceWithoutDiscont;
+      countRemainder.textContent =
+        remainderProduct[index].count - +itemCount.value;
+    } else if (+itemCount.value < remainderProduct[index].count) {
+      item.querySelector(".product-remainder").style.display = "none";
+    }
   });
 
+  //уменьшение кол-ва товара
   itemButtonMinus.addEventListener("click", (event) => {
     countProduct = countProduct - 1;
     countProduct = ValueRange(countProduct, 1000);
+    //запись значений по товару
     prodactsData[index].count = countProduct;
     prodactsData[index].currentPrice = currentPrice * countProduct;
     priceItemCount.textContent = prodactsData[index].currentPrice;
     itemCount.value = countProduct;
     priceWithoutDiscont.textContent =
       prodactsData[index].priceWithoutDiscont * prodactsData[index].count;
+    //проверка по кол-ву товара в наличии
     if (+itemCount.value > remainderProduct[index].count - 2) {
       item.querySelector(".product-remainder").style.display = "flex";
       countRemainder.textContent =
@@ -170,16 +180,19 @@ productsCount.forEach((item, index) => {
     }
   });
 
+  // уведичение кол-ва товара
   itemButtonPlus.addEventListener("click", (event) => {
     countProduct = countProduct + 1;
     countProduct = ValueRange(countProduct, 1000);
-
+    //запись значений по товару
     prodactsData[index].count = countProduct;
     prodactsData[index].currentPrice = currentPrice * countProduct;
     priceItemCount.textContent = prodactsData[index].currentPrice;
     itemCount.value = countProduct;
     priceWithoutDiscont.textContent =
       prodactsData[index].priceWithoutDiscont * prodactsData[index].count;
+
+    //проверка по кол-ву товара в наличии
     if (+itemCount.value > remainderProduct[index].count - 2) {
       item.querySelector(".product-remainder").style.display = "flex";
       countRemainder.textContent =
@@ -210,6 +223,7 @@ productsCount.forEach((item, index) => {
         +totalDiscont.textContent +
         (prodactsData[index].priceWithoutDiscont * prodactsData[index].count -
           prodactsData[index].currentPrice);
+      countInBasket.textContent = +countInBasket.textContent + 1;
     } else {
       currentSumPrice =
         totalPrice.textContent - +prodactsData[index].currentPrice;
@@ -226,6 +240,7 @@ productsCount.forEach((item, index) => {
         (prodactsData[index].priceWithoutDiscont * prodactsData[index].count -
           prodactsData[index].currentPrice);
       selectAll.checked = false;
+      countInBasket.textContent = +countInBasket.textContent - 1;
     }
 
     //провека, все ли чекбоксы true
@@ -238,7 +253,7 @@ productsCount.forEach((item, index) => {
     });
     check ? (selectAll.checked = true) : (selectAll.checked = false);
   });
-
+  //ограничения по минимальному и максимальному значению кол-ва товара
   const ValueRange = function (count, maxValue) {
     if (count >= maxValue) {
       itemCount.value = String(maxValue);
@@ -249,7 +264,14 @@ productsCount.forEach((item, index) => {
       return count;
     }
   };
-  btnDelete.onclick = () => item.remove();
+
+  //удаление товара
+  btnDelete.onclick = () => {
+    item.remove();
+    countInBasket.textContent = products.children.length;
+  };
+
+  //информация о компании
   infoCompany.addEventListener("mouseover", () => {
     item.querySelector(".info-about-company").style.display = "block";
   });
@@ -258,12 +280,15 @@ productsCount.forEach((item, index) => {
   });
 });
 
+//чек-бокс "Выбрать всё"
 selectAll.addEventListener("change", (event) => {
   let sumPrice = 0;
   let sumCount = 0;
   let sumPriceWithoutDiscont = 0;
   let sumDiscont = 0;
+
   if (selectAll.checked) {
+    countInBasket.textContent = products.children.length;
     for (let item in prodactsData) {
       prodactsData[item].checkbox = true;
       input[item].checked = true;
@@ -275,6 +300,7 @@ selectAll.addEventListener("change", (event) => {
       sumDiscont = sumPriceWithoutDiscont - sumPrice;
     }
   } else {
+    countInBasket.textContent = 0;
     for (let item in prodactsData) {
       prodactsData[item].checkbox = false;
       input[item].checked = false;
@@ -284,6 +310,7 @@ selectAll.addEventListener("change", (event) => {
       sumDiscont = 0;
     }
   }
+  //запись значений в чек
   totalPrice.textContent = sumPrice;
   totalCountProduct.textContent = sumCount;
   totalPriceWithoutDiscont.textContent = sumPriceWithoutDiscont;
@@ -291,11 +318,12 @@ selectAll.addEventListener("change", (event) => {
 });
 
 //начальные значения чека
-
 let initialSumPrice = 0;
 let initialSumCount = 0;
 let initialPriceWithoutDiscont = 0;
 let initialDiscont = 0;
+countInBasket.textContent = Object.keys(prodactsData).length;
+
 for (let item in prodactsData) {
   initialSumPrice += prodactsData[item].initialPrice;
   currentSumPrice = initialSumPrice;
@@ -313,6 +341,7 @@ totalDiscont.textContent =
 const MakeAnOrder = function () {
   let sumPrice = 0;
   let sumCount = 0;
+
   let sumPriceWithoutDiscont = 0;
   for (let item in prodactsData) {
     if (prodactsData[item].checkbox) {
@@ -342,10 +371,10 @@ let config = {
   characterDataOldValue: true,
 };
 
+//отслеживание изненений товаров
 let observer = new MutationObserver(MakeAnOrder);
 
-observer.observe(products, config);
-
+//кнопки для отображения модальных окон
 payButtonTotal.addEventListener("click", (event) => {
   modalWindowPay.style.display = "block";
 });
@@ -378,6 +407,7 @@ btnSelect.addEventListener("click", (event) => {
     document.querySelector(".pay-img").src = dataPerson.get("imgCart");
   }
 });
+
 //выбор карт оплаты
 let radio = payWindow.querySelectorAll(".payment-radio");
 let numCart = payWindow.querySelectorAll(".p-cart");
@@ -424,6 +454,7 @@ inputSurname.addEventListener("blur", (event) => {
   ValidationInput(inputSurname, document.querySelector(".div-input-surname"));
 });
 
+//ввод почты
 inputEmail.addEventListener("blur", (event) => {
   const EMAIL_REGEXP =
     /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
@@ -439,6 +470,7 @@ inputEmail.addEventListener("blur", (event) => {
   }
 });
 
+//валидация телефона
 let maskOptions = {
   mask: "+7 (000) 000-00-00",
   lazy: false,
@@ -449,6 +481,7 @@ inputTel.addEventListener("focus", (event) => {
 
 inputInn.addEventListener("blur", (event) => {});
 
+//доставка товара
 const btnDeliveryToPoint = document.getElementById("delivery-to-point");
 const btnDeliveryCourier = document.getElementById("delivery-courier");
 const adresses = document.querySelectorAll(".delivery-adress");

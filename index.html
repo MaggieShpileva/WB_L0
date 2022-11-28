@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>ТОВАРЫ И ТОЧКА</title>
     <link rel="stylesheet" href="styles.css" type="text/css" />
     <link
       rel="stylesheet"
@@ -43,6 +43,7 @@
             alt=""
           />
           <p class="header-p">Корзина</p>
+          <span class="count-product-in-basket"> 123 </span>
         </div>
       </div>
     </header>
@@ -71,7 +72,7 @@
                     type="checkbox"
                     name=""
                     id=""
-                    class="main-selected-products-input"
+                    class="main-selected-products-input input-for-mobile"
                     checked="true"
                   />
                   <img
@@ -175,7 +176,7 @@
                     type="checkbox"
                     name=""
                     id=""
-                    class="main-selected-products-input"
+                    class="main-selected-products-input input-for-mobile"
                     checked="true"
                   />
                   <img
@@ -278,7 +279,7 @@
                     type="checkbox"
                     name=""
                     id=""
-                    class="main-selected-products-input"
+                    class="main-selected-products-input input-for-mobile"
                     checked="true"
                   />
                   <img
@@ -479,8 +480,8 @@
       <section class="missing-products">
         <div class="missing-products-title">
           <h5 class="h5-title">Отсутствуют ·</h5>
-          <h5 class="h5-title">3</h5>
-          <h5 class="h5-title">товара</h5>
+          <h5 class="h5-title">&nbsp;3</h5>
+          <h5 class="h5-title">&nbsp;товара</h5>
           <button id="missing-button_turn" class="btn-turn-list"></button>
         </div>
         <!--  -->
@@ -492,7 +493,9 @@
                 src="./images/products/product-foto-1.png"
                 alt=""
               />
-              <div class="selected-product-description">
+              <div
+                class="selected-product-description missing-product-for-mobile"
+              >
                 <p class="p-title">Футболка UZcotton мужская</p>
                 <div class="product-properties">
                   <p class="p-properties">Цвет: белый</p>
@@ -502,7 +505,7 @@
             </div>
             <div class="main-selected-products-rigth">
               <div class="product-missing-price">
-                <div class="products-icons">
+                <div class="products-icons icons-for-mobile">
                   <button
                     id="product-like-btn"
                     class="product-like-btn"
@@ -524,7 +527,9 @@
                 src="./images/products/product-foto-2.png"
                 alt=""
               />
-              <div class="selected-product-description">
+              <div
+                class="selected-product-description missing-product-for-mobile"
+              >
                 <p class="p-title">
                   Силиконовый чехол картхолдер (отверстия) для карт, прозрачный
                   кейс бампер на Apple iPhone XR, MobiSafe
@@ -536,7 +541,7 @@
             </div>
             <div class="main-selected-products-rigth">
               <div class="product-missing-price">
-                <div class="products-icons">
+                <div class="products-icons icons-for-mobile">
                   <button
                     id="product-like-btn"
                     class="product-like-btn"
@@ -558,7 +563,9 @@
                 src="./images/products/product-foto-3.png"
                 alt=""
               />
-              <div class="selected-product-description">
+              <div
+                class="selected-product-description missing-product-for-mobile"
+              >
                 <p class="p-title">
                   Карандаши цветные Faber-Castell "Замок", набор 24 цвета,
                   заточенные, шестигранные, Faber-Castell
@@ -567,7 +574,7 @@
             </div>
             <div class="main-selected-products-rigth">
               <div class="product-missing-price">
-                <div class="products-icons">
+                <div class="products-icons icons-for-mobile">
                   <button
                     id="product-like-btn"
                     class="product-like-btn"
@@ -639,8 +646,8 @@
           <div class="data-order-agree-text">
             <p class="p-properties">
               Обратная доставка товаров на склад при отказе —
+              <span class="span-properties"> бесплатно</span>
             </p>
-            <span class="span-properties">&nbsp; бесплатно</span>
           </div>
         </div>
       </section>
@@ -662,7 +669,7 @@
           Спишем оплату с карты при получении
         </p>
       </section>
-      <section class="delivery-method">
+      <section class="delivery-method inputs-for-person-data">
         <div class="delivery-method-title">
           <h2>Получатель</h2>
         </div>
@@ -820,9 +827,117 @@
         </button>
       </div>
     </section>
+    <div class="total-for-mobile">
+      <div class="total-title">
+        <h3>Итого</h3>
+        <div class="total-price">
+          <h3 class="total-title-totalsum"></h3>
+          <h3>&nbsp; сом</h3>
+        </div>
+      </div>
+      <div class="total-product">
+        <div class="total-price">
+          <p class="total-product-p-count total-product-p">0</p>
+          <p class="total-product-p">&nbsp; товара</p>
+        </div>
+
+        <div class="total-price">
+          <p class="total-product-p total-price-without-discont">2323</p>
+          <p class="total-product-p">&nbsp;сом</p>
+        </div>
+      </div>
+      <div class="total-discount">
+        <p class="total-product-p">Скидка</p>
+        <div class="total-price">
+          <p class="total-product-p total-discont">-3232323</p>
+          <p class="total-product-p">&nbsp;сом</p>
+        </div>
+      </div>
+      <div class="total-delivery">
+        <p class="total-product-p">Доставка</p>
+        <p class="total-product-p">Бесплатно</p>
+      </div>
+      <div class="total-delivery-adress">
+        <div class="total-delivery-adress-title">
+          <h3>Доставка в пункт выдачи</h3>
+          <button class="total-change-btn"></button>
+        </div>
+        <p class="p-properties delivery-block-adress">
+          Бишкек, улица Ахматбека Суюмбаева, 12/1
+        </p>
+        <p class="total-delivery-adress-date">5–8 фев</p>
+      </div>
+      <div class="total-label-delivery">
+        <img
+          src="./images/icons/price shipping.png"
+          alt=""
+          class="total-label-delivery-img"
+        />
+        <div class="total-label-delivery-text">
+          <p class="p-properties">
+            Обратная доставка товаров на склад при отказе —<span
+              class="span-properties"
+              >бесплатно</span
+            >
+          </p>
+        </div>
+      </div>
+      <div class="total-payment">
+        <div class="total-payment-adress-title">
+          <h3>Оплата картой</h3>
+          <button class="total-change-btn" id="pay-1"></button>
+        </div>
+        <div class="total-payment-cart">
+          <div class="total-payment-cart-title">
+            <img
+              src="./images/icons/Платежные системы.png"
+              class="total-label-payment-img total-cart-img"
+              alt=""
+            />
+            <p class="p-properties" id="total-selected-num-cart">
+              1234 12•• •••• 1234
+            </p>
+          </div>
+          <div class="total-label-payment-text">
+            <div class="total-label-payment-text-agreement">
+              <input
+                type="checkbox"
+                class="main-selected-products-input write-off-payment"
+              />
+              <p class="p-properties">Списать оплату сразу</p>
+            </div>
+
+            <p class="p-properties total-label-payment-p">
+              Спишем оплату с карты при получении
+            </p>
+          </div>
+        </div>
+        <button class="total-btn">Заказать</button>
+        <div class="total-agreement">
+          <img
+            src="./images/icons/check mark.png"
+            alt=""
+            class="total-agreement-img"
+          />
+          <p class="p-properties total-agreement-p">
+            Соглашаюсь с правилами пользования торговой площадкой и возврата
+          </p>
+        </div>
+      </div>
+    </div>
+
     <footer>
       <p>© 2022 ООО «Товары и точка»</p>
     </footer>
+    <section class="tabbar">
+      <img src="./images/icons/tabbar/main.png" alt="" /><img
+        src="./images/icons/tabbar/catalog.png"
+        alt=""
+      />
+      <img src="./images/icons/tabbar/cart.png" alt="" />
+      <img src="./images/icons/tabbar/favorites.png" alt="" />
+      <img src="./images/icons/tabbar/profile (1).png" alt="" />
+    </section>
   </body>
   <script src="https://unpkg.com/imask"></script>
   <script src="script.js"></script>
