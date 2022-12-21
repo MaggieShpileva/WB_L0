@@ -6,7 +6,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
 }
 
@@ -261,6 +261,10 @@ main {
   width: 226px;
 }
 
+.main-selected-products-rigth {
+  width: 250px;
+  justify-content: space-between;
+}
 .product-properties {
   display: flex;
   flex-direction: row;
@@ -341,7 +345,8 @@ main {
 
 .product-price {
   text-align: end;
-  width: 120px;
+  min-width: 120px;
+  max-width: 220px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -353,7 +358,7 @@ main {
 }
 
 .product-price-price {
-  max-width: 120px;
+  max-width: 150px;
   height: 28px;
   font-weight: 700;
   display: flex;
@@ -363,12 +368,11 @@ main {
 }
 
 .price-count {
-  max-width: 85px;
+  max-width: 125px;
   height: 100%;
 
   font-style: normal;
   font-size: 20px;
-  margin: 0;
 }
 
 .products-icons {
@@ -741,7 +745,7 @@ main {
   background-image: url("./images/icons/checkbox.png");
   background-repeat: no-repeat;
   background-size: cover;
-  border: 1px solid cb11ab;
+  border: 1px solid #cb11ab;
   box-sizing: content-box;
 }
 
