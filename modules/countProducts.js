@@ -34,10 +34,17 @@ productsData.forEach((item, index) => {
     <p class="p-title selected-product-description-p">
      ${item.name}
     </p>
+    ${
+      item.color || item.size
+        ? `
     <div class="product-properties">
    ${item.color ? `<p class="p-properties">Цвет: ${item.color}</p>` : ""}
    ${item.size ? `<p class="p-properties">Размер: ${item.size}</p>` : ""}
   </div>
+    `
+        : ""
+    }
+    
     <div class="product-about-company">
       <p class="p-description product-about-company-p">
         ${item.storagePoint}
@@ -71,7 +78,7 @@ productsData.forEach((item, index) => {
         class="input-click-btn-minus"
         id="product_count_minus"
       >
-        -
+      −
       </button>
       <input
         class="input-click-input"
@@ -88,10 +95,11 @@ productsData.forEach((item, index) => {
         +
       </button>
     </div>
+   
     <div class="product-remainder">
       <p>Осталось &nbsp;</p>
       <p class="product-remainder-count">${item.remainderProduct}</p>
-      <p>&nbsp; шт</p>
+      <p>&nbsp;шт</p>
     </div>
     <div class="products-icons">
       <button
@@ -104,9 +112,10 @@ productsData.forEach((item, index) => {
       ></button>
     </div>
   </div>
+ 
   <div class="product-price">
     <div class="product-price-price">
-      <p class="price-count">${item.price}</p>
+    <p class="price-count">${item.price}</p>
       <p class="price-valuta">сом</p>
     </div>
     <div class="product-price-discount">
@@ -161,7 +170,9 @@ productsCount.forEach((item, index) => {
       productsData[index].remainderProduct
     );
     itemCount.value = countProduct;
-
+    if (Math.round(productsData[index].price * countProduct) > 1000000) {
+      priceItemCount.classList.add("big-price-count");
+    }
     priceItemCount.textContent = OutputNumber(
       productsData[index].price * countProduct
     );
@@ -171,7 +182,7 @@ productsCount.forEach((item, index) => {
     );
 
     //проверка по кол-ву товара в наличии
-    if (+itemCount.value > productsData[index].remainderProduct - 2) {
+    if (+itemCount.value > productsData[index].remainderProduct - 3) {
       item.querySelector(".product-remainder").style.display = "flex";
     } else if (+itemCount.value < productsData[index].remainderProduct) {
       item.querySelector(".product-remainder").style.display = "none";
@@ -179,7 +190,9 @@ productsCount.forEach((item, index) => {
     if (+itemCount.value == productsData[index].remainderProduct) {
       itemButtonPlus.disabled = true;
     }
-
+    if (+itemCount.value <= productsData[index].remainderProduct) {
+      itemButtonMinus.disabled = false;
+    }
     dataAboutProducts[index].count = countProduct;
   });
 
@@ -192,6 +205,9 @@ productsCount.forEach((item, index) => {
       productsData[index].remainderProduct
     );
     itemCount.value = countProduct;
+    if (countProduct == 1) {
+      itemButtonMinus.disabled = true;
+    }
 
     priceItemCount.textContent = OutputNumber(
       productsData[index].price * countProduct
@@ -199,9 +215,12 @@ productsCount.forEach((item, index) => {
     priceWithoutDiscont.textContent = OutputNumber(
       productsData[index].priceWithoutDiscont * countProduct
     );
-
+    if (Math.round(productsData[index].price * countProduct) < 1000000) {
+      priceItemCount.classList.remove("big-price-count");
+    }
     //проверка по кол-ву товара в наличии
-    if (+itemCount.value > productsData[index].remainderProduct - 2) {
+
+    if (+itemCount.value > productsData[index].remainderProduct - 3) {
       item.querySelector(".product-remainder").style.display = "flex";
     } else if (+itemCount.value < productsData[index].remainderProduct) {
       item.querySelector(".product-remainder").style.display = "none";
@@ -209,7 +228,6 @@ productsCount.forEach((item, index) => {
     if (+itemCount.value <= productsData[index].remainderProduct) {
       itemButtonPlus.disabled = false;
     }
-
     dataAboutProducts[index].count = countProduct;
   });
 
@@ -238,16 +256,32 @@ productsCount.forEach((item, index) => {
     if (+itemCount.value == productsData[index].remainderProduct) {
       itemButtonPlus.disabled = true;
     }
-
+    if (Math.round(productsData[index].price * countProduct) > 1000000) {
+      priceItemCount.classList.add("big-price-count");
+    } else {
+      priceItemCount.classList.remove("big-price-count");
+    }
     dataAboutProducts[index].count = countProduct;
   });
 
+  if (itemCount.value >= productsData[index].remainderProduct - 2) {
+    item.querySelector(".product-remainder").style.display = "flex";
+  }
+  if (+itemCount.value == productsData[index].remainderProduct) {
+    itemButtonPlus.disabled = true;
+  }
+  if (countProduct == 1) {
+    itemButtonMinus.disabled = true;
+  }
+  if (Math.round(productsData[index].price * countProduct) > 1000000) {
+    priceItemCount.classList.add("big-price-count");
+  }
   const ValueRange = function (count, maxValue) {
     if (count >= maxValue) {
       itemCount.value = String(maxValue);
       return (count = maxValue);
-    } else if (count < 1) {
-      return (count = 0);
+    } else if (count < 2) {
+      return (count = 1);
     } else {
       return count;
     }
@@ -263,6 +297,6 @@ productsCount.forEach((item, index) => {
     delete dataAboutProducts[index];
     item.remove();
     count -= 1;
-    countInBasket.textContent = count;
+    countInBasket.textContent = Object.keys(dataAboutProducts).length;
   });
 });

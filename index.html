@@ -20,6 +20,7 @@
         </div>
         <div class="header-title">
           <h1 class="header-title-h1">Товары и&nbsp; точка</h1>
+          <!-- <img src="./images/icons/Лого WB.png" alt="" /> -->
         </div>
       </div>
 
@@ -71,16 +72,16 @@
 
       <div class="total">
         <div class="total-title">
-          <h3>Итого</h3>
-          <div class="total-price">
+          <h3 class="total-title-h3">Итого</h3>
+          <div class="total-price-title">
             <h3 class="total-title-totalsum"></h3>
-            <h3>&nbsp; сом</h3>
+            <h3 class="total-com">&nbsp;сом</h3>
           </div>
         </div>
         <div class="total-product">
-          <div class="total-price">
-            <p class="total-product-p-count total-product-p">0</p>
-            <p class="total-product-p">&nbsp; товара</p>
+          <div class="total-price-count">
+            <p class="total-product-p-count total-product-p">4</p>
+            <p class="total-product-p total-p">товара</p>
           </div>
 
           <div class="total-price">
@@ -89,15 +90,15 @@
           </div>
         </div>
         <div class="total-discount">
-          <p class="total-product-p">Скидка</p>
+          <p class="total-product-p-title">Скидка</p>
           <div class="total-price">
-            <p class="total-product-p total-discont">-3232323</p>
+            <p class="total-product-p total-discont">3232323</p>
             <p class="total-product-p">&nbsp;сом</p>
           </div>
         </div>
         <div class="total-delivery">
-          <p class="total-product-p">Доставка</p>
-          <p class="total-product-p">Бесплатно</p>
+          <p class="total-product-p-delivery">Доставка</p>
+          <p class="total-product-p p-free">Бесплатно</p>
         </div>
         <div class="total-delivery-adress">
           <div class="total-delivery-adress-title">
@@ -105,7 +106,7 @@
             <button class="total-change-btn"></button>
           </div>
           <p class="p-properties delivery-block-adress">
-            Бишкек, улица Ахматбека Суюмбаева, 12/1
+            Бишкек, улица Ахматбека Суюмбаева, 12/ 1
           </p>
           <p class="total-delivery-adress-date">5–8 фев</p>
         </div>
@@ -116,8 +117,8 @@
             class="total-label-delivery-img"
           />
           <div class="total-label-delivery-text">
-            <p class="p-properties">
-              Обратная доставка товаров на склад при отказе —<span
+            <p class="p-properties p-delivery-text">
+              Обратная доставка товаров на склад при отказе &mdash;<span
                 class="span-properties"
                 >бесплатно</span
               >
@@ -126,7 +127,7 @@
         </div>
         <div class="total-payment">
           <div class="total-payment-adress-title">
-            <h3>Оплата картой</h3>
+            <h3 class="total-payment-title">Оплата картой</h3>
             <button class="total-change-btn" id="pay-1"></button>
           </div>
           <div class="total-payment-cart">
@@ -146,7 +147,7 @@
                   type="checkbox"
                   class="main-selected-products-input write-off-payment"
                 />
-                <p class="p-properties">Списать оплату сразу</p>
+                <p class="p-properties payment-text">Списать оплату сразу</p>
               </div>
 
               <p class="p-properties total-label-payment-p">
@@ -178,7 +179,7 @@
         <!--  -->
         <div class="all-missing-products">
           <div class="main-selected-products-missing">
-            <div class="main-selected-products-left">
+            <div class="main-selected-missing-products-left">
               <img
                 class="select-product-image"
                 src="./images/products/product-foto-1.png"
@@ -187,7 +188,7 @@
               <div
                 class="selected-product-description missing-product-for-mobile"
               >
-                <p class="p-title">Футболка UZcotton мужская</p>
+                <p class="p-title missing-p-title">Футболка UZcotton мужская</p>
                 <div class="product-properties">
                   <p class="p-properties">Цвет: белый</p>
                   <p class="p-properties">Размер: 56</p>
@@ -203,7 +204,7 @@
                   ></button>
                   <button
                     id="product-delete-btn"
-                    class="product-delete-btn"
+                    class="missing-product-delete-btn"
                   ></button>
                 </div>
               </div>
@@ -212,7 +213,7 @@
           </div>
           <!--  -->
           <div class="main-selected-products-missing">
-            <div class="main-selected-products-left">
+            <div class="main-selected-missing-products-left">
               <img
                 class="select-product-image"
                 src="./images/products/product-foto-2.png"
@@ -221,7 +222,7 @@
               <div
                 class="selected-product-description missing-product-for-mobile"
               >
-                <p class="p-title">
+                <p class="p-title missing-p-title">
                   Силиконовый чехол картхолдер (отверстия) для карт, прозрачный
                   кейс бампер на Apple iPhone XR, MobiSafe
                 </p>
@@ -239,7 +240,7 @@
                   ></button>
                   <button
                     id="product-delete-btn"
-                    class="product-delete-btn"
+                    class="missing-product-delete-btn"
                   ></button>
                 </div>
               </div>
@@ -248,7 +249,7 @@
           </div>
           <!--  -->
           <div class="main-selected-products-missing">
-            <div class="main-selected-products-left">
+            <div class="main-selected-missing-products-left">
               <img
                 class="select-product-image"
                 src="./images/products/product-foto-3.png"
@@ -257,7 +258,7 @@
               <div
                 class="selected-product-description missing-product-for-mobile"
               >
-                <p class="p-title">
+                <p class="p-title missing-p-title">
                   Карандаши цветные Faber-Castell "Замок", набор 24 цвета,
                   заточенные, шестигранные, Faber-Castell
                 </p>
@@ -272,7 +273,7 @@
                   ></button>
                   <button
                     id="product-delete-btn"
-                    class="product-delete-btn"
+                    class="missing-product-delete-btn"
                   ></button>
                 </div>
               </div>
@@ -289,27 +290,28 @@
         <div class="delivery-method-data-order">
           <div class="data-order-title">
             <h5 class="h5-title">Пункт выдачи</h5>
-            <p class="p-title">Бишкек, улица Ахматбека Суюмбаева, 12/1</p>
+            <p class="p-title delivery-adress-p">
+              Бишкек, улица Ахматбека Суюмбаева, 12/ 1
+            </p>
             <div class="data-order-title-adress-delivery">
               <img src="./images/icons/star_fill.png" alt="" />
               <p class="rating p-properties">4.99</p>
               <p class="p-properties">&nbsp; Ежедневно с 10 до 21</p>
             </div>
           </div>
-          <div class="data-order-title">
+          <div class="data-order-title data-order-price">
             <h5 class="h5-title">Стоимость доставки</h5>
             <p class="p-title">Бесплатно</p>
           </div>
-          <div class="data-order-title">
+          <div class="data-order-title data-order-date">
             <h5 class="h5-title">5—6 февраля</h5>
             <div class="data-order-images">
               <div class="data-order-images-product">
                 <img src="./images/products/product-foto-1.png" alt="" />
-                <span>22</span>
               </div>
               <div class="data-order-images-product">
                 <img src="./images/products/product-foto-2.png" alt="" />
-                <span>3</span>
+                <span>184</span>
               </div>
               <div class="data-order-images-product">
                 <img src="./images/products/product-foto-3.png" alt="" />
@@ -317,12 +319,12 @@
               </div>
             </div>
           </div>
-          <div class="data-order-title">
+          <div class="data-order-title data-order-title-date">
             <h5 class="h5-title">7—8 февраля</h5>
             <div class="data-order-images">
               <div class="data-order-images-product">
-                <img src="./images/products/product-foto-1.png" alt="" />
-                <span>122</span>
+                <img src="./images/products/product-foto-2.png" alt="" />
+                <span>16</span>
               </div>
             </div>
           </div>
@@ -337,12 +339,12 @@
           <div class="data-order-agree-text">
             <p class="p-properties">
               Обратная доставка товаров на склад при отказе —
-              <span class="span-properties"> бесплатно</span>
+              <span class="span-properties">бесплатно</span>
             </p>
           </div>
         </div>
       </section>
-      <section class="delivery-method">
+      <section class="delivery-method pay-div">
         <div class="delivery-method-title">
           <h2>Способ оплаты</h2>
           <button id="pay-2">Изменить</button>
@@ -354,14 +356,17 @@
             class="total-label-payment-img pay-img"
             alt=""
           />
-          <p class="p-title" id="selected-num-cart">1234 12•• •••• 1234</p>
+          <p class="p-title pay-title" id="selected-num-cart">
+            1234 12•• •••• 1234
+          </p>
+          <p class="p-title pay-title">01/30</p>
         </div>
         <p class="p-grey total-payment-cart-title-p">
           Спишем оплату с карты при получении
         </p>
       </section>
       <section class="delivery-method inputs-for-person-data">
-        <div class="delivery-method-title">
+        <div class="delivery-method-title input-title-h2">
           <h2>Получатель</h2>
         </div>
         <div class="delivery-method-person-data">
@@ -394,7 +399,7 @@
               <p class="div-input-tel-p">Телефон</p>
               <input
                 type="tel"
-                placeholder="Телефон"
+                placeholder="+7 (988) 123-45-67"
                 pattern="9-999-999-99-99"
                 class="delivery-method-person-data-input input-telefon"
               />

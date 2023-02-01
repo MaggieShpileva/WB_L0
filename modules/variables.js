@@ -48,6 +48,7 @@ export const inputInn = document.querySelector(".input-inn");
 
 export let dataAboutProducts = new Map();
 export let dataPerson = new Map(); // данные о пользователе
+
 export const OutputNumber = (num) => {
   num = String(Math.round(num));
   return num.replace(/(\d{1,3}(?=(?:\d\d\d)+(?!\d)))/g, "$1" + " ");

@@ -127,8 +127,8 @@ buttonTurn.onclick = function () {
 //кнопка для скрытия/отображения товаров, которых нет в наличии
 const missingButtonTurn = document.getElementById("missing-button_turn");
 missingButtonTurn.onclick = function () {
-  buttonTurn.classList.toggle("turn-down-list");
-  if (buttonTurn.classList.contains("turn-down-list")) {
+  missingButtonTurn.classList.toggle("turn-down-list-2");
+  if (missingButtonTurn.classList.contains("turn-down-list-2")) {
     document.querySelector(".all-missing-products").style.display = "none";
   } else {
     document.querySelector(".all-missing-products").style.display = "block";

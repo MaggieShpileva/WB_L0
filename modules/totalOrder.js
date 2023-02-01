@@ -19,10 +19,12 @@ productsData.forEach((item, index) => {
   sumPrice += item.price * item.countForOrder;
   totalPrice.textContent = OutputNumber(sumPrice);
   sumCountProducts += item.countForOrder;
-  totalCountProduct.textContent = sumCountProducts;
+  totalCountProduct.textContent = "4";
   sumPriceWithoutDiscont += item.priceWithoutDiscont * item.countForOrder;
   totalPriceWithoutDiscont.textContent = OutputNumber(sumPriceWithoutDiscont);
-  totalDiscont.textContent = OutputNumber(sumPriceWithoutDiscont - sumPrice);
+  totalDiscont.textContent = `−${OutputNumber(
+    sumPriceWithoutDiscont - sumPrice
+  )}`;
   countInBasket.textContent = productsData.length;
 });
 const MakeAnOrder = () => {
@@ -40,9 +42,11 @@ const MakeAnOrder = () => {
     }
   });
   totalPrice.textContent = OutputNumber(sumPrice);
-  totalCountProduct.textContent = sumCount;
+  totalCountProduct.textContent = Object.keys(dataAboutProducts).length;
   totalPriceWithoutDiscont.textContent = OutputNumber(sumPriceWithoutDiscont);
-  totalDiscont.textContent = OutputNumber(sumPriceWithoutDiscont - sumPrice);
+  totalDiscont.textContent = `-${OutputNumber(
+    sumPriceWithoutDiscont - sumPrice
+  )}`;
   if (writeOffPayment.checked) {
     document.querySelector(".total-btn").textContent = `Оплатить ${OutputNumber(
       sumPrice
